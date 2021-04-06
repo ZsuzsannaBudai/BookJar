@@ -11,9 +11,15 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/View/fxml/Scene.fxml"));
+        /*Parent root = FXMLLoader.load(getClass().getResource("/View/fxml/Valaszto_Ablak.fxml"));
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("/View/styles/Styles.css");
+        //scene.getStylesheets().add("/View/styles/Styles.css");
+        stage.setTitle("BookJar");
+        stage.setScene(scene);
+        stage.show();
+        */
+        FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/View/fxml/Valaszto_Ablak.fxml"));
+        Scene scene = new Scene(loader.load());
         stage.setTitle("BookJar");
         stage.setScene(scene);
         stage.show();
