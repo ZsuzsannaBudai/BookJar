@@ -1,0 +1,30 @@
+/*az egész ablak háttere és mérete*/
+#AnchorPane {
+    -fx-background-image: url('./belsoAblakBG.jpeg');
+    -fx-background-size: 1000 500;
+}
+/*eltűnik a tab pane háttere és környezete*/
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+/*alap szin a tab-paneben lévő taboknak*/ 
+.tab-pane .tab {
+    -fx-background-color: #fc9d03;
+    
+}
+/*tabnak a háttérszine ha ki van választva*/
+.tab-pane .tab:selected {
+    -fx-background-color: #fc0352;
+}
+/*tab paneben a tab szövegének szine*/
+.tab .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+/*tab pane szöveg szine ha ki van választva*/
+.tab:selected .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #ffffff;
+}

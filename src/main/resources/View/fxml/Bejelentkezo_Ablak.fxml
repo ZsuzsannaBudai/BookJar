@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="Controller.Bejelentkezo_AblakController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../styles/bejelentkezoRegisztraciosAblakCSS.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Bejelentkezo_AblakController">
    <children>
-      <GridPane layoutX="-1.0" layoutY="-1.0" prefHeight="400.0" prefWidth="600.0">
+      <GridPane layoutX="-1.0" layoutY="-1.0" prefHeight="500.0" prefWidth="1000.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -25,20 +25,45 @@
             <RowConstraints maxHeight="249.0" minHeight="10.0" prefHeight="77.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="LoginLabel" alignment="CENTER" prefHeight="74.0" prefWidth="319.0" text="..." />
-            <Label text="E-mail cím" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <Label text="Jelszó" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <TextField fx:id="LoginWindow_Email" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label id="mainLabel" fx:id="LoginLabel" alignment="CENTER" prefHeight="38.0" prefWidth="446.0" styleClass="mainLabel" stylesheets="@../styles/bejelentkezoRegisztraciosAblakCSS.css" text="Bejelentkezés" GridPane.halignment="CENTER">
+               <font>
+                  <Font name="Bookshelf Symbol 7" size="36.0" />
+               </font>
                <GridPane.margin>
-                  <Insets left="10.0" right="30.0" />
+                  <Insets left="40.0" right="40.0" />
+               </GridPane.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets></Label>
+            <Label stylesheets="@../styles/bejelentkezoRegisztraciosAblakCSS.css" text="E-mail cím" textFill="#ebcc34" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets bottom="55.0" left="50.0" top="20.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Calibri Bold" size="24.0" />
+               </font></Label>
+            <TextField fx:id="LoginWindow_Email" minWidth="-Infinity" prefHeight="30.0" prefWidth="300.0" styleClass="textField" stylesheets="@../styles/bejelentkezoRegisztraciosAblakCSS.css" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="50.0" right="30.0" top="20.0" />
                </GridPane.margin>
             </TextField>
-            <PasswordField fx:id="LoginWindow_Password" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <PasswordField fx:id="LoginWindow_Password" minWidth="-Infinity" prefHeight="30.0" prefWidth="300.0" styleClass="textField" stylesheets="@../styles/bejelentkezoRegisztraciosAblakCSS.css" GridPane.rowIndex="2">
                <GridPane.margin>
-                  <Insets left="10.0" right="30.0" />
+                  <Insets bottom="40.0" left="50.0" right="30.0" />
                </GridPane.margin>
             </PasswordField>
-            <Button mnemonicParsing="false" onAction="#LoginWindow_Button_Pushed" text="Bejelentkezés" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" onAction="#LoginWindow_Button_Pushed" stylesheets="@../styles/bejelentkezoRegisztraciosAblakCSS.css" text="Bejelentkezés" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets bottom="100.0" left="50.0" right="20.0" />
+               </GridPane.margin></Button>
+            <Label text="Jelszó" textFill="#ebcc34" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Calibri Bold" size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets bottom="95.0" left="50.0" />
+               </GridPane.margin>
+            </Label>
          </children>
       </GridPane>
    </children>
