@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -7,43 +8,34 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookJar_Belso_AblakController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../styles/belsoAblakCSS.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookJar_Belso_AblakController">
    <children>
-      <GridPane prefHeight="405.0" prefWidth="600.0">
+      <GridPane alignment="CENTER" prefHeight="500" prefWidth="1000">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="196.0" minHeight="10.0" prefHeight="96.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="315.0" minHeight="10.0" prefHeight="309.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="196.0" minHeight="10.0" prefHeight="95.99999237060547" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="403.2000076293945" minHeight="10.0" prefHeight="403.2000076293945" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.rowIndex="1">
+            <TabPane blendMode="COLOR_BURN" maxWidth="1000" minWidth="1000.0" prefHeight="500" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMinHeight="50.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
               <tabs>
-                <Tab text="Katalógus">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                </Tab>
-                <Tab fx:id="BookJar_Requests" text="Kérelmek">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                </Tab>
-                <Tab text="Felhasználó lista">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                </Tab>
-                <Tab text="Hasznos infók">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                </Tab>
+                <Tab text="Katalógus" />
+                <Tab fx:id="BookJar_Requests" text="Kérelmek" />
+                <Tab text="Felhasználó lista" />
+                <Tab text="Hasznos infók" />
               </tabs>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
             </TabPane>
-            <Label fx:id="BookJar_Main_Label" alignment="CENTER" prefHeight="124.0" prefWidth="600.0" text="..." />
+            <Label fx:id="BookJar_Main_Label" alignment="CENTER" prefHeight="124.0" prefWidth="1000.0" text="..." textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="36.0" />
+               </font></Label>
          </children>
       </GridPane>
    </children>

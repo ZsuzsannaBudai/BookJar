@@ -30,7 +30,7 @@ public class Bejelentkezo_AblakController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/fxml/BookJar_Belso_Ablak.fxml"));
         Stage stage = new Stage();
         stage.setTitle("BookJar");
-        stage.setScene(new Scene(loader.load(), 600, 400));
+        stage.setScene(new Scene(loader.load(), 1000, 500));
         BookJar_Belso_AblakController controller = loader.getController();
         controller.setTab(dolgozo);
         stage.show();
