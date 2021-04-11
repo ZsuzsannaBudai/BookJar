@@ -29,7 +29,7 @@ public class Regisztralt_Ember{
     private RoleType Role;
     private int id;
 
-    @Basic
+    @Basic                                                  // @Basic -> Adatbázisban az oszlopok létrehozása az adott változóhoz
     public String getFirstName() {
         return FirstName;
     }
@@ -66,7 +66,7 @@ public class Regisztralt_Ember{
     }
     
     @Basic
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)                        // Ha ez a sor kimaradt, az adatbázisban 0 vagy 1 érték jelenik meg, ezért megmondjuk neki, hogy STRING-ben írja ki
     public RoleType getRole() {
         return Role;
     }
