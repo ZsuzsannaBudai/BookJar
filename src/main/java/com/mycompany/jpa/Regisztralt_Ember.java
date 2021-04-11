@@ -22,29 +22,19 @@ import javax.persistence.Id;
 @Entity
 public class Regisztralt_Ember{
     
-    private String FirstName;
-    private String LastName;
+    private String Name;
     private String Email;
     private String Password;
     private RoleType Role;
     private int id;
 
     @Basic                                                  // @Basic -> Adatbázisban az oszlopok létrehozása az adott változóhoz
-    public String getFirstName() {
-        return FirstName;
+    public String getName() {
+        return Name;
     }
 
-    public void setFirstName(String FirstName) {
-        this.FirstName = FirstName;
-    }
-
-    @Basic
-    public String getLastName() {
-        return LastName;
-    }
-
-    public void setLastName(String LastName) {
-        this.LastName = LastName;
+    public void setName(String Name) {
+        this.Name = Name;
     }
 
     @Basic
