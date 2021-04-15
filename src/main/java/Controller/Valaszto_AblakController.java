@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import com.mycompany.jpa.MysqlCon;
 import java.sql.SQLException;
 
+
 public class Valaszto_AblakController implements Initializable {
     
     MysqlCon dbCon;
