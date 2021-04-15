@@ -8,9 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 
-
-
-public class BookJar_Belso_AblakController implements Initializable {
+public class BookJar_Belso_Ablak_DolgozoiController implements Initializable {
 
     MysqlCon dbCon;
     

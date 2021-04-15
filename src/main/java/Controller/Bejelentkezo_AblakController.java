@@ -27,9 +27,6 @@ public class Bejelentkezo_AblakController implements Initializable {
     @FXML
     private TextField LoginWindow_Email;
 
-    
-    
-    
     @FXML
     private PasswordField LoginWindow_Password;
 
@@ -38,11 +35,11 @@ public class Bejelentkezo_AblakController implements Initializable {
         Model model = new Model();
         model.setSQLInstance(this.dbCon);
         if (model.login(LoginWindow_Email.getText(), LoginWindow_Password.getText(), dolgozo) != null) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/fxml/BookJar_Belso_Ablak.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/fxml/BookJar_Belso_Ablak_Dolgozoi.fxml"));
             Stage stage = new Stage();
             stage.setTitle("BookJar");
             stage.setScene(new Scene(loader.load(), 1000, 500));
-            BookJar_Belso_AblakController controller = loader.getController();
+            BookJar_Belso_Ablak_DolgozoiController controller = loader.getController();
             controller.setTab(dolgozo);
             controller.setSQLInstance(this.dbCon);
             stage.show();
@@ -51,6 +48,54 @@ public class Bejelentkezo_AblakController implements Initializable {
             System.out.println("Hibas felhasznalo v jelszo");
         }
 
+        /*if(LoginWindow_Email.getText().equals("email") && LoginWindow_Password.getText().equals("jelszo")){
+            
+            int dolgozo_int = (dolgozo ? 1 : 0);
+            switch(dolgozo_int){
+                case 0:
+                    {
+                        FXMLLoader loader = 
+                                new FXMLLoader(getClass().getResource("/View/fxml/BookJar_Belso_Ablak_Olvasoi.fxml"));
+                        Stage stage = new Stage();
+                        stage.setTitle("BookJar - Olvaso");
+                        stage.setScene(new Scene(loader.load(), 1000, 500));
+                        stage.setResizable(false);
+                        stage.show();
+                        ((Node)(event.getSource())).getScene().getWindow().hide();
+                    }
+                    break;
+                case 1:
+                    {
+                        FXMLLoader loader = 
+                                new FXMLLoader(getClass().getResource("/View/fxml/BookJar_Belso_Ablak_Dolgozoi.fxml"));
+                        Stage stage = new Stage();
+                        stage.setTitle("BookJar - Dolgozo");
+                        stage.setScene(new Scene(loader.load(), 1000, 500));
+                        stage.setResizable(false);
+                        stage.show();
+                        ((Node)(event.getSource())).getScene().getWindow().hide();
+                    }
+                    break;
+            }
+        }
+        else{
+            ErrorMessage_Label.setVisible(true);
+            
+            Task<Void> sleeper = new Task<Void>(){
+                @Override
+                protected Void call() throws Exception {
+                     try{
+                         Thread.sleep(3000);
+                     } catch(InterruptedException k){}
+                     return null;
+                } };
+            
+            new Thread(sleeper).start();
+            sleeper.setOnSucceeded(b -> {
+                ErrorMessage_Label.setVisible(false);  
+            });
+        }
+    }*/
     }
 
     @Override

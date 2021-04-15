@@ -11,7 +11,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
-
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -53,6 +52,11 @@ public class Regisztracio_AblakController implements Initializable {
         else{
             System.out.println("Hibás jelszó vagy egyéb jellegű hiba!");
         }
+    }
+    
+     @FXML
+    void Registration_BackButton_Pushed(ActionEvent event) {
+        ((Node)(event.getSource())).getScene().getWindow().hide();
     }
     
     @Override

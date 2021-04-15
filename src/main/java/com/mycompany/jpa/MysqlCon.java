@@ -1,5 +1,3 @@
-
-
 package com.mycompany.jpa;
 
 import java.sql.*;
