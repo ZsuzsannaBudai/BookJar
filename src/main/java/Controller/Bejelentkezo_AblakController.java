@@ -27,6 +27,9 @@ public class Bejelentkezo_AblakController implements Initializable {
     @FXML
     private TextField LoginWindow_Email;
 
+    
+    
+    
     @FXML
     private PasswordField LoginWindow_Password;
 
