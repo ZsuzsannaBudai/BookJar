@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.Model;
+import com.mycompany.jpa.MysqlCon;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,10 +17,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class Bejelentkezo_AblakController implements Initializable {
+
+    MysqlCon dbCon;
+
     public boolean dolgozo;
     @FXML
     private Label LoginLabel;
-    
+
     @FXML
     private TextField LoginWindow_Email;
 
@@ -27,31 +32,90 @@ public class Bejelentkezo_AblakController implements Initializable {
 
     @FXML
     void LoginWindow_Button_Pushed(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/fxml/BookJar_Belso_Ablak.fxml"));
-        Stage stage = new Stage();
-        stage.setTitle("BookJar");
-        stage.setScene(new Scene(loader.load(), 1000, 500));
-        BookJar_Belso_AblakController controller = loader.getController();
-        controller.setTab(dolgozo);
-        stage.show();
-        ((Node)(event.getSource())).getScene().getWindow().hide();
+        Model model = new Model();
+        model.setSQLInstance(this.dbCon);
+        if (model.login(LoginWindow_Email.getText(), LoginWindow_Password.getText(), dolgozo) != null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/fxml/BookJar_Belso_Ablak_Dolgozoi.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("BookJar");
+            stage.setScene(new Scene(loader.load(), 1000, 500));
+            BookJar_Belso_Ablak_DolgozoiController controller = loader.getController();
+            controller.setTab(dolgozo);
+            controller.setSQLInstance(this.dbCon);
+            stage.show();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        } else {
+            System.out.println("Hibas felhasznalo v jelszo");
+        }
+
+        /*if(LoginWindow_Email.getText().equals("email") && LoginWindow_Password.getText().equals("jelszo")){
+            
+            int dolgozo_int = (dolgozo ? 1 : 0);
+            switch(dolgozo_int){
+                case 0:
+                    {
+                        FXMLLoader loader = 
+                                new FXMLLoader(getClass().getResource("/View/fxml/BookJar_Belso_Ablak_Olvasoi.fxml"));
+                        Stage stage = new Stage();
+                        stage.setTitle("BookJar - Olvaso");
+                        stage.setScene(new Scene(loader.load(), 1000, 500));
+                        stage.setResizable(false);
+                        stage.show();
+                        ((Node)(event.getSource())).getScene().getWindow().hide();
+                    }
+                    break;
+                case 1:
+                    {
+                        FXMLLoader loader = 
+                                new FXMLLoader(getClass().getResource("/View/fxml/BookJar_Belso_Ablak_Dolgozoi.fxml"));
+                        Stage stage = new Stage();
+                        stage.setTitle("BookJar - Dolgozo");
+                        stage.setScene(new Scene(loader.load(), 1000, 500));
+                        stage.setResizable(false);
+                        stage.show();
+                        ((Node)(event.getSource())).getScene().getWindow().hide();
+                    }
+                    break;
+            }
+        }
+        else{
+            ErrorMessage_Label.setVisible(true);
+            
+            Task<Void> sleeper = new Task<Void>(){
+                @Override
+                protected Void call() throws Exception {
+                     try{
+                         Thread.sleep(3000);
+                     } catch(InterruptedException k){}
+                     return null;
+                } };
+            
+            new Thread(sleeper).start();
+            sleeper.setOnSucceeded(b -> {
+                ErrorMessage_Label.setVisible(false);  
+            });
+        }
+    }*/
     }
-    
+
     @Override
-    public void initialize(URL url, ResourceBundle rb) {}
-    
-    public void setDolgozo(boolean dolgozo){
+    public void initialize(URL url, ResourceBundle rb) {
+    }
+
+    public void setDolgozo(boolean dolgozo) {
         this.dolgozo = dolgozo;
         Init();
     }
-    
-    private void Init(){
-        if(dolgozo){
+
+    private void Init() {
+        if (dolgozo) {
             LoginLabel.setText("Dolgozói bejelentkezés");
-        }
-        else{
+        } else {
             LoginLabel.setText("Olvasói bejelentkezés");
         }
     }
-    
+
+    public void setSQLInstance(MysqlCon sqlInstance) {
+        this.dbCon = sqlInstance;
+    }
 }
