@@ -7,12 +7,10 @@ package com.mycompany.jpa;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -20,7 +18,7 @@ import javax.persistence.Id;
  * @author Gabi
  */
 @Entity
-public class Regisztralt_Ember{
+public class Regisztralt_Ember implements Serializable{
     
     private String Name;
     private String Email;
@@ -65,8 +63,6 @@ public class Regisztralt_Ember{
         this.Role = Role;
     }
 
-    
-    
     @GeneratedValue
     @Id
     public int getId() {
@@ -75,6 +71,5 @@ public class Regisztralt_Ember{
 
     public void setId(int id) {
         this.id = id;
-    }
-    
+    } 
 }

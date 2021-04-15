@@ -1,5 +1,6 @@
 package Controller;
 
+import com.mycompany.jpa.MysqlCon;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -9,6 +10,8 @@ import javafx.scene.control.Tab;
 
 public class BookJar_Belso_AblakController implements Initializable {
 
+    MysqlCon dbCon;
+    
     @FXML
     private Tab BookJar_Requests;
 
@@ -26,4 +29,7 @@ public class BookJar_Belso_AblakController implements Initializable {
         BookJar_Requests.setDisable(!dolgozo);
     }
     
+    public void setSQLInstance(MysqlCon sqlInstance) {
+        this.dbCon = sqlInstance;
+    }
 }
