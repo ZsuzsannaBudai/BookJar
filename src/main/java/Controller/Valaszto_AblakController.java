@@ -1,6 +1,5 @@
 package Controller;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -10,22 +9,29 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import com.mycompany.jpa.MysqlCon;
+import java.sql.SQLException;
 
 public class Valaszto_AblakController implements Initializable {
+    
+    MysqlCon dbCon;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        this.dbCon = new MysqlCon();
     }
     
     @FXML
-    public void Dolgozoi_Bejelentkezes_Action(ActionEvent event) throws IOException {
+    public void Dolgozoi_Bejelentkezes_Action(ActionEvent event) throws IOException, SQLException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/fxml/Bejelentkezo_Ablak.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Bejelentkezés");
         stage.setScene(new Scene(loader.load(), 1000, 500));
         Bejelentkezo_AblakController controller = loader.getController();
         controller.setDolgozo(true);
+        controller.setSQLInstance(this.dbCon);
         stage.show();
+
     }
 
     @FXML
@@ -36,6 +42,7 @@ public class Valaszto_AblakController implements Initializable {
         stage.setScene(new Scene(loader.load(), 1000, 500));
         Bejelentkezo_AblakController controller = loader.getController();
         controller.setDolgozo(false);
+        controller.setSQLInstance(this.dbCon);
         stage.show();
     }
 
@@ -45,6 +52,8 @@ public class Valaszto_AblakController implements Initializable {
         Stage stage = new Stage();
         stage.setTitle("Regisztráció");
         stage.setScene(new Scene(loader.load(), 1000, 500));
+        Regisztracio_AblakController controller = loader.getController();
+        controller.setSQLInstance(this.dbCon);
         stage.show();
     }  
 }

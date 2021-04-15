@@ -1,5 +1,6 @@
 package Controller;
 
+import com.mycompany.jpa.MysqlCon;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,6 +16,8 @@ import javafx.stage.Stage;
 
 
 public class Regisztracio_AblakController implements Initializable {
+
+    MysqlCon dbCon;
 
     @FXML
     private TextField Name_TextField;
@@ -51,9 +54,17 @@ public class Regisztracio_AblakController implements Initializable {
         }
     }
     
+     @FXML
+    void Registration_BackButton_Pushed(ActionEvent event) {
+        ((Node)(event.getSource())).getScene().getWindow().hide();
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-    }    
+    }   
     
+    public void setSQLInstance(MysqlCon sqlInstance) {
+        this.dbCon = sqlInstance;
+    }
 }

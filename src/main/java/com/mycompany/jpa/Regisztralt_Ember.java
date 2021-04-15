@@ -7,12 +7,10 @@ package com.mycompany.jpa;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -20,31 +18,21 @@ import javax.persistence.Id;
  * @author Gabi
  */
 @Entity
-public class Regisztralt_Ember{
+public class Regisztralt_Ember implements Serializable{
     
-    private String FirstName;
-    private String LastName;
+    private String Name;
     private String Email;
     private String Password;
     private RoleType Role;
     private int id;
 
-    @Basic
-    public String getFirstName() {
-        return FirstName;
+    @Basic                                                  // @Basic -> Adatbázisban az oszlopok létrehozása az adott változóhoz
+    public String getName() {
+        return Name;
     }
 
-    public void setFirstName(String FirstName) {
-        this.FirstName = FirstName;
-    }
-
-    @Basic
-    public String getLastName() {
-        return LastName;
-    }
-
-    public void setLastName(String LastName) {
-        this.LastName = LastName;
+    public void setName(String Name) {
+        this.Name = Name;
     }
 
     @Basic
@@ -66,7 +54,7 @@ public class Regisztralt_Ember{
     }
     
     @Basic
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)                        // Ha ez a sor kimaradt, az adatbázisban 0 vagy 1 érték jelenik meg, ezért megmondjuk neki, hogy STRING-ben írja ki
     public RoleType getRole() {
         return Role;
     }
@@ -75,8 +63,6 @@ public class Regisztralt_Ember{
         this.Role = Role;
     }
 
-    
-    
     @GeneratedValue
     @Id
     public int getId() {
@@ -85,6 +71,5 @@ public class Regisztralt_Ember{
 
     public void setId(int id) {
         this.id = id;
-    }
-    
+    } 
 }
