@@ -16,11 +16,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
 public class Regisztracio_AblakController implements Initializable {
 
     MysqlCon dbCon;
 
+    public boolean dolgozo;
+    
     @FXML
     private TextField Name_TextField;
 
@@ -35,41 +36,30 @@ public class Regisztracio_AblakController implements Initializable {
 
     @FXML
     void SendButtonPush(ActionEvent event) throws IOException, ClassNotFoundException, SQLException {
-        CharSequence s = "@";
-        //if(Password_TextField.getText().equals(PasswordAgain_TextField.getText()) && !Name_TextField.getText().isEmpty() && Email_TextField.getText().contains(s)){
-        //    System.out.println("Név: " + Name_TextField.getText() + "\nEmail: " + Email_TextField.getText() + "\nJelszó: " + Password_TextField.getText());
-            
         Model model = new Model();
         model.setSQLInstance(this.dbCon);
         model.register(Email_TextField.getText(), Email_TextField.getText(), Password_TextField.getText());
-            
-        //Parent root = FXMLLoader.load(getClass().getResource("/fxml/Bejelentkezo_Ablak.fxml"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/fxml/Bejelentkezo_Ablak.fxml"));
         Stage stage = new Stage();
-            stage.setTitle("Bejelentkezés");
-            stage.setScene(new Scene(loader.load(), 1000, 500));
-            
-            Bejelentkezo_AblakController controller = loader.getController();
-            controller.setDolgozo(false);
-            
-            stage.show();
-            ((Node)(event.getSource())).getScene().getWindow().hide();
-        //}
-        //else{
-            //System.out.println("Hibás jelszó vagy egyéb jellegű hiba!");
-        //}
+        stage.setTitle("Bejelentkezés");
+        stage.setScene(new Scene(loader.load(), 1000, 500));
+        Bejelentkezo_AblakController controller = loader.getController();
+        controller.setDolgozo(false);
+        controller.setSQLInstance(this.dbCon);
+        stage.show();
+        ((Node) (event.getSource())).getScene().getWindow().hide();
     }
-    
-     @FXML
+
+    @FXML
     void Registration_BackButton_Pushed(ActionEvent event) {
-        ((Node)(event.getSource())).getScene().getWindow().hide();
+        ((Node) (event.getSource())).getScene().getWindow().hide();
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-    }   
-    
+
+    }
+
     public void setSQLInstance(MysqlCon sqlInstance) {
         this.dbCon = sqlInstance;
     }
