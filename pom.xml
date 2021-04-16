@@ -101,7 +101,13 @@
                     <mainClass>Main.MainApp</mainClass>
                 </configuration>
             </plugin>
+            
+            
         </plugins>
+        
+        
     </build>
+    
+    
 
 </project>
