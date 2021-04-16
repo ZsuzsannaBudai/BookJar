@@ -4,6 +4,7 @@ import Model.Model;
 import com.mycompany.jpa.MysqlCon;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +22,7 @@ public class Bejelentkezo_AblakController implements Initializable {
     MysqlCon dbCon;
 
     public boolean dolgozo;
+    public int dolgozo2;
     @FXML
     private Label LoginLabel;
 
@@ -34,7 +36,21 @@ public class Bejelentkezo_AblakController implements Initializable {
     void LoginWindow_Button_Pushed(ActionEvent event) throws IOException {
         Model model = new Model();
         model.setSQLInstance(this.dbCon);
-        if (model.login(LoginWindow_Email.getText(), LoginWindow_Password.getText(), dolgozo) != null) {
+        if (model.login_admin(LoginWindow_Email.getText(), LoginWindow_Password.getText(), 0) != null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/fxml/BookJar_Belso_Ablak_Dolgozoi.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("BookJar");
+            stage.setScene(new Scene(loader.load(), 1000, 500));
+            BookJar_Belso_Ablak_DolgozoiController controller = loader.getController();
+            controller.setTab(dolgozo);
+            controller.setSQLInstance(this.dbCon);
+            stage.show();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        } else {
+            System.out.println("Hibas felhasznalo v jelszo");
+        }
+        
+         if (model.login_user(LoginWindow_Email.getText(), LoginWindow_Password.getText(), 1) != null) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/fxml/BookJar_Belso_Ablak_Dolgozoi.fxml"));
             Stage stage = new Stage();
             stage.setTitle("BookJar");

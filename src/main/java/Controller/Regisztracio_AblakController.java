@@ -1,8 +1,10 @@
 package Controller;
 
+import Model.Model;
 import com.mycompany.jpa.MysqlCon;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,26 +34,30 @@ public class Regisztracio_AblakController implements Initializable {
     private PasswordField PasswordAgain_TextField;
 
     @FXML
-    void SendButtonPush(ActionEvent event) throws IOException {
+    void SendButtonPush(ActionEvent event) throws IOException, ClassNotFoundException, SQLException {
         CharSequence s = "@";
-        if(Password_TextField.getText().equals(PasswordAgain_TextField.getText()) && !Name_TextField.getText().isEmpty() && Email_TextField.getText().contains(s)){
-            System.out.println("Név: " + Name_TextField.getText() + "\nEmail: " + Email_TextField.getText() + "\nJelszó: " + Password_TextField.getText());
+        //if(Password_TextField.getText().equals(PasswordAgain_TextField.getText()) && !Name_TextField.getText().isEmpty() && Email_TextField.getText().contains(s)){
+        //    System.out.println("Név: " + Name_TextField.getText() + "\nEmail: " + Email_TextField.getText() + "\nJelszó: " + Password_TextField.getText());
+            
+        Model model = new Model();
+        model.setSQLInstance(this.dbCon);
+        model.register(Email_TextField.getText(), Email_TextField.getText(), Password_TextField.getText());
             
         //Parent root = FXMLLoader.load(getClass().getResource("/fxml/Bejelentkezo_Ablak.fxml"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/fxml/Bejelentkezo_Ablak.fxml"));
         Stage stage = new Stage();
             stage.setTitle("Bejelentkezés");
-            stage.setScene(new Scene(loader.load(), 600, 400));
+            stage.setScene(new Scene(loader.load(), 1000, 500));
             
             Bejelentkezo_AblakController controller = loader.getController();
             controller.setDolgozo(false);
             
             stage.show();
             ((Node)(event.getSource())).getScene().getWindow().hide();
-        }
-        else{
-            System.out.println("Hibás jelszó vagy egyéb jellegű hiba!");
-        }
+        //}
+        //else{
+            //System.out.println("Hibás jelszó vagy egyéb jellegű hiba!");
+        //}
     }
     
      @FXML
