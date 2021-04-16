@@ -88,6 +88,8 @@ public class Regisztracio_AblakControllerTest {
         
         else
             assertTrue(actual);
+        
+        
     }
 
     /**
