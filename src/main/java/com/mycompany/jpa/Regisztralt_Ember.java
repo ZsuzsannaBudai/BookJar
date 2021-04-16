@@ -8,8 +8,6 @@ package com.mycompany.jpa;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -23,7 +21,7 @@ public class Regisztralt_Ember implements Serializable{
     private String Name;
     private String Email;
     private String Password;
-    private RoleType Role;
+    private int Role;
     private int id;
 
     @Basic                                                  // @Basic -> Adatbázisban az oszlopok létrehozása az adott változóhoz
@@ -54,12 +52,12 @@ public class Regisztralt_Ember implements Serializable{
     }
     
     @Basic
-    @Enumerated(EnumType.STRING)                        // Ha ez a sor kimaradt, az adatbázisban 0 vagy 1 érték jelenik meg, ezért megmondjuk neki, hogy STRING-ben írja ki
-    public RoleType getRole() {
+    //@Enumerated(EnumType.STRING)                        // Ha ez a sor kimaradt, az adatbázisban 0 vagy 1 érték jelenik meg, ezért megmondjuk neki, hogy STRING-ben írja ki
+    public int getRole() {
         return Role;
     }
 
-    public void setRole(RoleType Role) {
+    public void setRole(int Role) {
         this.Role = Role;
     }
 
