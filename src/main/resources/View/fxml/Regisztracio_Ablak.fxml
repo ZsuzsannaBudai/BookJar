@@ -99,11 +99,16 @@
                <GridPane.margin>
                   <Insets top="30.0" />
                </GridPane.margin></Label>
-            <TextField maxWidth="300.0" minHeight="-Infinity" minWidth="300.0" prefWidth="300.0" GridPane.rowIndex="1">
+            <TextField fx:id="Name_TextField" maxWidth="300.0" minHeight="-Infinity" minWidth="300.0" prefWidth="300.0" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="100.0" top="55.0" />
                </GridPane.margin>
             </TextField>
+            <Label fx:id="ErrorMessage_Label" text="Ezzel az e-mail címmel már létezik felhasználó!" textFill="RED" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets bottom="50.0" left="120.0" />
+               </GridPane.margin>
+            </Label>
          </children>
       </GridPane>
    </children>

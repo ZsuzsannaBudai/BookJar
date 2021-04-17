@@ -12,8 +12,6 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
 
     MysqlCon dbCon;
 
-    
-
     @FXML
     private Label BookJar_Main_Label;
     
