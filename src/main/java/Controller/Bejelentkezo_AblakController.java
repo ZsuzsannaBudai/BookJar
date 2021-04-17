@@ -4,7 +4,6 @@ import Model.Model;
 import com.mycompany.jpa.MysqlCon;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,7 +33,6 @@ public class Bejelentkezo_AblakController implements Initializable {
     @FXML
     void LoginWindow_Button_Pushed(ActionEvent event) throws IOException {
         Model model = new Model();
-        model.setSQLInstance(this.dbCon);
         if (dolgozo) {
             if (model.login_admin(LoginWindow_Email.getText(), LoginWindow_Password.getText(), 0) != null) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/fxml/BookJar_Belso_Ablak_Dolgozoi.fxml"));
@@ -43,7 +41,6 @@ public class Bejelentkezo_AblakController implements Initializable {
                 stage.setScene(new Scene(loader.load(), 1000, 500));
                 BookJar_Belso_Ablak_DolgozoiController controller = loader.getController();
                 controller.setTab(dolgozo);
-                controller.setSQLInstance(this.dbCon);
                 stage.show();
                 ((Node) (event.getSource())).getScene().getWindow().hide();
             } else {
@@ -57,7 +54,6 @@ public class Bejelentkezo_AblakController implements Initializable {
                 stage.setScene(new Scene(loader.load(), 1000, 500));
                 BookJar_Belso_Ablak_OlvasoiController controller = loader.getController();
                 controller.setTab(dolgozo);
-                controller.setSQLInstance(this.dbCon);
                 stage.show();
                 ((Node) (event.getSource())).getScene().getWindow().hide();
             } else {
@@ -88,6 +84,7 @@ public class Bejelentkezo_AblakController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        this.dbCon = MysqlCon.getInstance();
     }
 
     public void setDolgozo(boolean dolgozo) {
@@ -101,9 +98,5 @@ public class Bejelentkezo_AblakController implements Initializable {
         } else {
             LoginLabel.setText("Olvasói bejelentkezés");
         }
-    }
-
-    public void setSQLInstance(MysqlCon sqlInstance) {
-        this.dbCon = sqlInstance;
     }
 }

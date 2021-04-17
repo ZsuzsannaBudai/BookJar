@@ -19,8 +19,12 @@ import java.sql.Statement;
  * @author bzse9
  */
 public class Model {
-
+    
     MysqlCon dbCon;
+
+    public Model() {
+        this.dbCon = MysqlCon.getInstance();
+    }
 
     public Regisztralt_Ember login_user(String email, String password, int dolgozo) {
         try {
@@ -63,20 +67,10 @@ public class Model {
     }
     
     public Regisztralt_Ember register(String name, String email, String password) throws ClassNotFoundException, SQLException {
-        String driver="com.mysql.cj.jdbc.Driver";
-        String url="jdbc:mysql://hosting2128384.online.pro:3306/00504526_bookjardatabase";
-        String uname="00504526_bookjardatabase";
-        String pass="_9CHmpXxNgqMs8W";
-        Class.forName(driver);
-        Connection c=(Connection) DriverManager.getConnection(url,uname,pass);
-        Statement s=c.createStatement();
+        Statement stmt = dbCon.mysqlconnection.createStatement();
         int rolevalue = 1;
-        s.executeUpdate("INSERT INTO users(Name, Email, Password, RoleType) VALUE ('"+name+"','"+email+"','"+password+"','"+rolevalue+"')");
+        stmt.executeUpdate("INSERT INTO users(Name, Email, Password, RoleType) VALUE ('"+name+"','"+email+"','"+password+"','"+rolevalue+"')");
         
         return null;
-    }
-
-    public void setSQLInstance(MysqlCon sqlInstance) {
-        this.dbCon = sqlInstance;
     }
 }
