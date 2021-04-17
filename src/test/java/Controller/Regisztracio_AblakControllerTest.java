@@ -8,6 +8,7 @@ package Controller;
 import Model.Model;
 import com.mycompany.jpa.MysqlCon;
 import com.mycompany.jpa.Regisztralt_Ember;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -82,13 +83,35 @@ public class Regisztracio_AblakControllerTest {
             actual = true;
         }
         
-        if (actual != true)
-            fail("Hiba a feltöltésben");
+        assertEquals(true, actual);
+    }
+    
+    @Test
+    public void testLogin_user() throws IOException{
+        boolean actual = false;
         
-        else
-            assertTrue(actual);
+        Model model = new Model();
         
+        if ((model.login_user("istvan@gmail.com", "istvan123", 1)) != null)
+        {
+            actual = true;
+        }
         
+        assertEquals(true, actual);
+    }
+    
+    @Test
+    public void testLogin_admin() throws IOException{
+        boolean actual = false;
+        
+        Model model = new Model();
+        
+        if ((model.login_admin("geregabor@bookjar.com", "admin123", 0)) != null)
+        {
+            actual = true;
+        }
+        
+        assertEquals(true, actual);
     }
 
     /**

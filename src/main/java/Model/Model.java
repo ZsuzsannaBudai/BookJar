@@ -66,11 +66,23 @@ public class Model {
         return null;
     }
     
-    public Regisztralt_Ember register(String name, String email, String password) throws ClassNotFoundException, SQLException {
+    public int register(String name, String email, String password) throws ClassNotFoundException, SQLException {
         Statement stmt = dbCon.mysqlconnection.createStatement();
         int rolevalue = 1;
-        stmt.executeUpdate("INSERT INTO users(Name, Email, Password, RoleType) VALUE ('"+name+"','"+email+"','"+password+"','"+rolevalue+"')");
         
-        return null;
+        ResultSet rs = dbCon.executeQuery("SELECT * FROM users WHERE Email= " + "'" + email + "'" +  
+                    "AND Name= " + "'" + name + "'");
+ 
+        if(rs.next()) {
+            System.out.println("Van benne");
+            return 1;
+        }
+        
+        else
+            stmt.executeUpdate("INSERT INTO users(Name, Email, Password, RoleType) VALUE ('"+name+"','"+email+"','"+password+"','"+rolevalue+"')");
+        
+        System.out.println("Nincs benne");
+        
+        return 0;
     }
 }
