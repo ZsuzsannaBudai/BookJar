@@ -6,14 +6,11 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
+import Model.Model;
 
 public class BookJar_Belso_Ablak_DolgozoiController implements Initializable {
 
     MysqlCon dbCon;
-    
-    @FXML
-    private Tab BookJar_Requests;
 
     @FXML
     private Label BookJar_Main_Label;
@@ -21,12 +18,12 @@ public class BookJar_Belso_Ablak_DolgozoiController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.dbCon = MysqlCon.getInstance();
+        
+        Model model = new Model();
+        
         StringBuilder sb = new StringBuilder();
-        sb.append("Szia, ").append(">username<").append("! Válassz az alábbi menüpontok közül!");
+        sb.append("Szia, ").append(model.passLoginUserName).append("! Válassz az alábbi menüpontok közül!");
         BookJar_Main_Label.setText(sb.toString());
     }    
     
-    public void setTab(boolean dolgozo){
-        BookJar_Requests.setDisable(!dolgozo);
-    }
 }
