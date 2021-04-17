@@ -20,6 +20,7 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        this.dbCon = MysqlCon.getInstance();
         StringBuilder sb = new StringBuilder();
         sb.append("Szia, ").append(">username<").append("! Válassz az alábbi menüpontok közül!");
         BookJar_Main_Label.setText(sb.toString());
@@ -27,9 +28,5 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
     
     public void setTab(boolean dolgozo){
         BookJar_Requests.setDisable(!dolgozo);
-    }
-    
-    public void setSQLInstance(MysqlCon sqlInstance) {
-        this.dbCon = sqlInstance;
     }
 }

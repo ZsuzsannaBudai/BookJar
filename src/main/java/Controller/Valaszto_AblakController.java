@@ -18,7 +18,7 @@ public class Valaszto_AblakController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.dbCon = new MysqlCon();
+        this.dbCon = MysqlCon.getInstance();
     }
     
     @FXML
@@ -29,7 +29,6 @@ public class Valaszto_AblakController implements Initializable {
         stage.setScene(new Scene(loader.load(), 1000, 500));
         Bejelentkezo_AblakController controller = loader.getController();
         controller.setDolgozo(true);
-        controller.setSQLInstance(this.dbCon);
         stage.show();
 
     }
@@ -42,7 +41,6 @@ public class Valaszto_AblakController implements Initializable {
         stage.setScene(new Scene(loader.load(), 1000, 500));
         Bejelentkezo_AblakController controller = loader.getController();
         controller.setDolgozo(false);
-        controller.setSQLInstance(this.dbCon);
         stage.show();
     }
 
@@ -53,7 +51,6 @@ public class Valaszto_AblakController implements Initializable {
         stage.setTitle("Regisztráció");
         stage.setScene(new Scene(loader.load(), 1000, 500));
         Regisztracio_AblakController controller = loader.getController();
-        controller.setSQLInstance(this.dbCon);
         stage.show();
     }  
 }
