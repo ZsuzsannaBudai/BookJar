@@ -37,7 +37,6 @@ public class Regisztracio_AblakController implements Initializable {
     @FXML
     void SendButtonPush(ActionEvent event) throws IOException, ClassNotFoundException, SQLException {
         Model model = new Model();
-        model.setSQLInstance(this.dbCon);
         model.register(Email_TextField.getText(), Email_TextField.getText(), Password_TextField.getText());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/fxml/Bejelentkezo_Ablak.fxml"));
         Stage stage = new Stage();
@@ -45,7 +44,6 @@ public class Regisztracio_AblakController implements Initializable {
         stage.setScene(new Scene(loader.load(), 1000, 500));
         Bejelentkezo_AblakController controller = loader.getController();
         controller.setDolgozo(false);
-        controller.setSQLInstance(this.dbCon);
         stage.show();
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
@@ -57,10 +55,6 @@ public class Regisztracio_AblakController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-    }
-
-    public void setSQLInstance(MysqlCon sqlInstance) {
-        this.dbCon = sqlInstance;
+        this.dbCon = MysqlCon.getInstance();
     }
 }
