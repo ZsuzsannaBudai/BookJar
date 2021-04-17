@@ -63,7 +63,6 @@ public class Regisztracio_AblakControllerTest {
         user1.setRole(1);
         
         Model model = new Model();
-        model.setSQLInstance(this.dbCon);
         
         model.register(user1.getName(), user1.getEmail(), user1.getPassword());
          

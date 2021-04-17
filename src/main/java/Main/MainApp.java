@@ -1,5 +1,6 @@
 package Main;
 
+import com.mycompany.jpa.MysqlCon;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +8,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
+
+    @Override
+    public void stop() throws Exception {
+       MysqlCon.getInstance().killThisShit();
+       super.stop();
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
