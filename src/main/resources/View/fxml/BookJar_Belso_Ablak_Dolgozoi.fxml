@@ -4,13 +4,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../styles/belsoAblakCSS.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookJar_Belso_Ablak_DolgozoiController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../styles/belsoAblakCSS.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookJar_Belso_Ablak_DolgozoiController">
    <children>
       <GridPane alignment="CENTER" prefHeight="500" prefWidth="1000">
         <columnConstraints>
@@ -24,7 +26,7 @@
             <TabPane blendMode="COLOR_BURN" maxWidth="1000" minWidth="1000.0" prefHeight="500" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMinHeight="50.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
               <tabs>
                 <Tab text="Katalógus" />
-                <Tab fx:id="BookJar_Requests" text="Kérelmek" />
+                <Tab text="Kérelmek" />
                 <Tab text="Felhasználó lista" />
                 <Tab text="Hasznos infók" />
               </tabs>
@@ -35,7 +37,14 @@
             <Label fx:id="BookJar_Main_Label" alignment="CENTER" prefHeight="124.0" prefWidth="1000.0" text="..." textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="36.0" />
-               </font></Label>
+               </font>
+               <effect>
+                  <Shadow height="0.0" radius="0.0" width="0.0">
+                     <color>
+                        <Color red="1.0" />
+                     </color>
+                  </Shadow>
+               </effect></Label>
          </children>
       </GridPane>
    </children>
