@@ -7,9 +7,6 @@ package Model;
 
 import com.mycompany.jpa.MysqlCon;
 import com.mycompany.jpa.Regisztralt_Ember;
-import com.mycompany.jpa.RoleType;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,6 +18,8 @@ import java.sql.Statement;
 public class Model {
     
     MysqlCon dbCon;
+    
+    public static String passLoginUserName;
 
     public Model() {
         this.dbCon = MysqlCon.getInstance();
@@ -37,7 +36,10 @@ public class Model {
                 re.setPassword(rs.getString("Password"));
                 re.setName(rs.getString("Name"));
                 re.setId(rs.getInt("UserID"));
-                re.setRole(rs.getInt("RoleType"));                
+                re.setRole(rs.getInt("RoleType")); 
+                
+                passLoginUserName = re.getName();
+                
                 return re;
             }
         } catch (SQLException e) {
@@ -57,7 +59,12 @@ public class Model {
                 re.setPassword(rs.getString("Password"));
                 re.setName(rs.getString("Name"));
                 re.setId(rs.getInt("UserID"));
-                re.setRole(rs.getInt("RoleType"));                
+                re.setRole(rs.getInt("RoleType"));
+
+                passLoginUserName = re.getName();
+                
+                System.out.println(passLoginUserName);
+                
                 return re;
             }
         } catch (SQLException e) {

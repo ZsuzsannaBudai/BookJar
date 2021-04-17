@@ -47,6 +47,11 @@ public class Regisztracio_AblakController implements Initializable {
         stage.show();
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
+    
+    @FXML
+    void Registration_BackButton_Push(ActionEvent event) {
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+    }
 
     @FXML
     void Registration_BackButton_Pushed(ActionEvent event) {
