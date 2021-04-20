@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -83,16 +84,20 @@ public class Regisztracio_AblakControllerTest {
             actual = true;
         }
         
+        PreparedStatement st = c.prepareStatement("DELETE FROM users WHERE Email = '" + user1.getEmail() + "'");
+        st.executeUpdate();
+        
         assertEquals(true, actual);
     }
     
     @Test
     public void testLogin_user() throws IOException{
+        System.out.println("testUserLogin");
         boolean actual = false;
         
         Model model = new Model();
         
-        if ((model.login_user("istvan@gmail.com", "istvan123", 1)) != null)
+        if ((model.login_user("tesztfelhasznalo@gmail.com", "tesztteszt123", 1)) != null)
         {
             actual = true;
         }
@@ -102,6 +107,7 @@ public class Regisztracio_AblakControllerTest {
     
     @Test
     public void testLogin_admin() throws IOException{
+        System.out.println("testAdminLogin");
         boolean actual = false;
         
         Model model = new Model();
