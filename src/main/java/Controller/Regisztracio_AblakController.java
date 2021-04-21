@@ -38,12 +38,27 @@ public class Regisztracio_AblakController implements Initializable {
     
     @FXML
     private Label ErrorMessage_Label;
+    
+    public int emailIsCorrect(String s){  
+        String[] splittedEmail = s.split("[\\@\\.]");
+        if(splittedEmail.length == 3)
+            return 1;
+        return 0;
+    }
+    
+    public int passwordsAreEquals(String s1, String s2){
+        if(s1.equals(s2))
+            return 1;
+        return 0;
+    }
 
     @FXML
     void SendButtonPush(ActionEvent event) throws IOException, ClassNotFoundException, SQLException {
         Model model = new Model();
-        
-        if((model.register(Name_TextField.getText(), Email_TextField.getText(), Password_TextField.getText())) == 0){
+
+        if(emailIsCorrect(Email_TextField.getText()) == 1 
+                && passwordsAreEquals(Password_TextField.getText(), PasswordAgain_TextField.getText()) == 1
+                && ((model.register(Name_TextField.getText(), Email_TextField.getText(), Password_TextField.getText())) == 0)){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/fxml/Bejelentkezo_Ablak.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Bejelentkezés");
