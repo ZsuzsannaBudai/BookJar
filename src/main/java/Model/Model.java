@@ -5,6 +5,7 @@ import com.mycompany.jpa.Regisztralt_Ember;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import Controller.*;
 
 /**
  *

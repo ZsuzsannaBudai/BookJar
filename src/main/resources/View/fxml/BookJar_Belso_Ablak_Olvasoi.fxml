@@ -38,7 +38,7 @@
                      </color>
                   </Shadow>
                </effect></Label>
-            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.rowIndex="1">
+            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" GridPane.rowIndex="1">
               <tabs>
                 <Tab text="Katalógus">
                   <content>
@@ -67,12 +67,12 @@
                                     <Font size="18.0" />
                                  </font>
                               </Button>
-                              <TableView fx:id="TableView" layoutX="400.0" layoutY="10.0" prefHeight="354.0" prefWidth="590.0">
+                              <TableView fx:id="TableView" layoutX="400.0" layoutY="10.0" prefHeight="333.0" prefWidth="591.0">
                                 <columns>
                                   <TableColumn fx:id="author" prefWidth="126.0" text="Szerző" />
-                                  <TableColumn fx:id="title" prefWidth="274.0" text="Cím" />
-                                    <TableColumn fx:id="isbn" prefWidth="112.0" text="ISBN" />
-                                    <TableColumn fx:id="bookID" prefWidth="77.0" text="BookID" />
+                                  <TableColumn fx:id="title" prefWidth="247.0" text="Cím" />
+                                    <TableColumn fx:id="isbn" prefWidth="123.0" text="ISBN" />
+                                    <TableColumn fx:id="bookID" prefWidth="93.0" text="BookID" />
                                 </columns>
                               </TableView>
                            </children></AnchorPane>

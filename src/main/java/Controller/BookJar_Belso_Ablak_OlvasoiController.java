@@ -57,7 +57,26 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
 
     @FXML
     void SearchButton_Pressed(ActionEvent event) throws SQLException {
-        
+        queryBooks();
+    }
+
+    @FXML
+    void Exit_Pushed(ActionEvent event) {
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        this.dbCon = MysqlCon.getInstance();
+
+        Model model = new Model();
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("Szia, ").append(model.passLoginUserName).append("! Válassz az alábbi menüpontok közül!");
+        BookJar_Main_Label.setText(sb.toString());  
+    }
+    
+    public void queryBooks() throws SQLException{
         ResultSet rs = null;
         data.clear();
         
@@ -68,8 +87,6 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
         usedTextFields += (!Writer_TextField.getText().equals("") ? 1 : 0);
         usedTextFields += (!Title_TextField.getText().equals("") ? 2 : 0);
         usedTextFields += (!ISBN_TextField.getText().equals("") ? 4 : 0);
-        
-        
 
         switch (usedTextFields) {
             case 1:
@@ -127,23 +144,6 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
         bookID.setCellValueFactory(new PropertyValueFactory<Books, Integer>("BookID"));
 
         TableView.setItems(data);
-        
-    }
-
-    @FXML
-    void Exit_Pushed(ActionEvent event) {
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        this.dbCon = MysqlCon.getInstance();
-
-        Model model = new Model();
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("Szia, ").append(model.passLoginUserName).append("! Válassz az alábbi menüpontok közül!");
-        BookJar_Main_Label.setText(sb.toString());  
     }
 
 }
