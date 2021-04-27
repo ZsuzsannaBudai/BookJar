@@ -16,6 +16,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import org.junit.After;
@@ -55,14 +58,20 @@ public class Regisztracio_AblakControllerTest {
     
     @Test
     public void testRegistration() throws ClassNotFoundException, SQLException {
+        System.out.println("TESTING -- register() --");
         boolean actual = false;
         
-        System.out.println("testRegistration");
+        LocalDate localdate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedDate = localdate.format(formatter);
+        
+        
         Regisztralt_Ember user1 = new Regisztralt_Ember();
         user1.setName("Istvan");
         user1.setEmail("istvan@gmail.com");
         user1.setPassword("istvan123");
         user1.setRole(1);
+        user1.setDate(formattedDate);
         
         Model model = new Model();
         
@@ -76,7 +85,11 @@ public class Regisztracio_AblakControllerTest {
         Connection c =(Connection) DriverManager.getConnection(url,uname,pass);
         Statement s=c.createStatement();
         
-        String queryCheck1 = "SELECT * from users WHERE Email = '" + user1.getEmail() + "'";
+        String queryCheck1 = ("SELECT * FROM users WHERE Email= " + "'" + user1.getEmail() + "'" +  
+                    "AND Password= " + "'" + user1.getPassword() + "'" + 
+                    "AND RoleType= " + "'" + user1.getRole() +"'" +  
+                    "AND Date= " + "'" + user1.getDate() + "'" +  
+                    "AND Name= " + "'" + user1.getName() + "';");
         
         ResultSet rs = s.executeQuery(queryCheck1);
  
@@ -92,7 +105,7 @@ public class Regisztracio_AblakControllerTest {
     
     @Test
     public void testLogin_user() throws IOException{
-        System.out.println("testUserLogin");
+        System.out.println("TESTING -- login_user() --");
         boolean actual = false;
         
         Model model = new Model();
@@ -107,7 +120,7 @@ public class Regisztracio_AblakControllerTest {
     
     @Test
     public void testLogin_admin() throws IOException{
-        System.out.println("testAdminLogin");
+        System.out.println("TESTING -- login_admin --");
         boolean actual = false;
         
         Model model = new Model();
@@ -119,59 +132,23 @@ public class Regisztracio_AblakControllerTest {
         
         assertEquals(true, actual);
     }
-
-    /**
-     * Test of SendButtonPush method, of class Regisztracio_AblakController.
-     */
-    /*@Test
-    public void testSendButtonPush() throws Exception {
-        System.out.println("SendButtonPush");
-        ActionEvent event = null;
-        Regisztracio_AblakController instance = new Regisztracio_AblakController();
-        instance.SendButtonPush(event);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    
+    @Test
+    public void testFetchData() throws IOException, SQLException {
+        System.out.println("TESTING -- FetchData() --");
+        boolean actual = false;
+        
+        ArrayList<Regisztralt_Ember> lista = new ArrayList<>();
+        Model model = new Model();
+        
+        lista = model.FetchData();
+        
+        if (("Kristof".equals(lista.get(2).getName())) && ("Gabi".equals(lista.get(1).getName())))
+        {
+            actual = true;
+        }
+        
+        assertEquals(true, actual);
     }
-
-    /**
-     * Test of Registration_BackButton_Pushed method, of class Regisztracio_AblakController.
-     */
-    /*@Test
-    public void testRegistration_BackButton_Pushed() {
-        System.out.println("Registration_BackButton_Pushed");
-        ActionEvent event = null;
-        Regisztracio_AblakController instance = new Regisztracio_AblakController();
-        instance.Registration_BackButton_Pushed(event);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of initialize method, of class Regisztracio_AblakController.
-     */
-    /*@Test
-    public void testInitialize() {
-        System.out.println("initialize");
-        URL url = null;
-        ResourceBundle rb = null;
-        Regisztracio_AblakController instance = new Regisztracio_AblakController();
-        instance.initialize(url, rb);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setSQLInstance method, of class Regisztracio_AblakController.
-     */
-    /*@Test
-    public void testSetSQLInstance() {
-        System.out.println("setSQLInstance");
-        MysqlCon sqlInstance = null;
-        Regisztracio_AblakController instance = new Regisztracio_AblakController();
-        instance.setSQLInstance(sqlInstance);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    */
     
 }
