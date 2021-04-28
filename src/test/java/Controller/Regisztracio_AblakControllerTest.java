@@ -10,6 +10,7 @@ import com.mycompany.jpa.Books;
 import com.mycompany.jpa.MysqlCon;
 import com.mycompany.jpa.Regisztralt_Ember;
 import Controller.Regisztracio_AblakController;
+import com.opera.core.systems.scope.protos.ExecProtos;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -21,7 +22,8 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -29,7 +31,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Assert;
 
 /**
  *
@@ -292,4 +293,36 @@ public class Regisztracio_AblakControllerTest {
         assertEquals(true, actual);
     }
     
+    @Test
+    public void test_searchQuery() throws SQLException, ClassNotFoundException {
+        System.out.println("TESTING -- searchQuery() --");
+
+        BookJar_Belso_Ablak_OlvasoiController controller = new BookJar_Belso_Ablak_OlvasoiController();
+        ObservableList<Books> expected = controller.searchQuery("", "", "");
+        ObservableList<Books> result = controller.searchQuery(0);
+
+        boolean isEqual = expected.sorted().equals(result.sorted());
+        
+        assertEquals(expected, result);
+        
+    }
+    
+    @Test
+    public void test_searchQuery_1() throws SQLException, ClassNotFoundException {
+        System.out.println("TESTING -- searchQuery_1() --");
+
+        BookJar_Belso_Ablak_OlvasoiController controller = new BookJar_Belso_Ablak_OlvasoiController();
+        ObservableList<Books> expected = FXCollections.observableArrayList();
+        ObservableList<Books> result = controller.searchQuery("Leigh Bardugo", "", "");
+        
+        expected.add(new Books("Leigh Bardugo", "Shadow and Bone (Árnyak és csont)", "978-0-8050-9459-6", 20));
+        expected.add(new Books("Leigh Bardugo", "Siege and Storm (Ostrom és vihar)", "9781780621708", 21));
+        expected.add(new Books("Leigh Bardugo", "Ruin and rising (Pusztulás és felemelkedés)", "9781510105256", 22));
+
+        boolean isEqual = expected.sorted().equals(result.sorted());
+        
+        assertEquals(expected, result);
+        
+    }
+
 }

@@ -5,6 +5,8 @@
  */
 package com.mycompany.jpa;
 
+import java.util.Objects;
+
 /**
  *
  * @author Lali
@@ -55,6 +57,43 @@ public class Books {
 
     public void setBookID(Integer bookID) {
         this.bookID = bookID;
+    }
+
+    @Override
+    public String toString() {
+        return author + " " + title + " " + isbn + " " + bookID;
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Books other = (Books) obj;
+        if (!Objects.equals(this.author, other.author)) {
+            return false;
+        }
+        if (!Objects.equals(this.title, other.title)) {
+            return false;
+        }
+        if (!Objects.equals(this.isbn, other.isbn)) {
+            return false;
+        }
+        if (!Objects.equals(this.bookID, other.bookID)) {
+            return false;
+        }
+        return true;
     }
     
     
