@@ -24,49 +24,42 @@ public class Model {
         this.dbCon = MysqlCon.getInstance();
     }
 
-    public Regisztralt_Ember login_user(String email, String password, int dolgozo) {
-        try {
-            ResultSet rs = dbCon.executeQuery("SELECT * FROM users WHERE Email= " + "'" + email + "'" +  
-                    "AND Password= " + "'" + password + "'" + 
-                    "AND RoleType= " + "'" + dolgozo +"';");
-            if (rs.next()) {
-                Regisztralt_Ember re = new Regisztralt_Ember();
-                re.setEmail(rs.getString("Email"));
-                re.setPassword(rs.getString("Password"));
-                re.setName(rs.getString("Name"));
-                re.setId(rs.getInt("UserID"));
-                re.setRole(rs.getInt("RoleType")); 
+    public Regisztralt_Ember login_user(String email, String password, int dolgozo) throws SQLException {
+        ResultSet rs = dbCon.executeQuery("SELECT * FROM users WHERE Email= " + "'" + email + "'" +  
+                "AND Password= " + "'" + password + "'" + 
+                "AND RoleType= " + "'" + dolgozo +"';");
+        if (rs.next()) {
+            Regisztralt_Ember re = new Regisztralt_Ember();
+            re.setEmail(rs.getString("Email"));
+            re.setPassword(rs.getString("Password"));
+            re.setName(rs.getString("Name"));
+            re.setId(rs.getInt("UserID"));
+            re.setRole(rs.getInt("RoleType")); 
                 
-                passLoginUserName = re.getName();
+            passLoginUserName = re.getName();
                 
-                return re;
+            return re;
             }
-        } catch (SQLException e) {
-            
-        }
+
         return null;
     }
     
-    public Regisztralt_Ember login_admin(String email, String password, int dolgozo) {
-        try {
-            ResultSet rs = dbCon.executeQuery("SELECT * FROM users WHERE Email= " + "'" + email + "'" +  
-                    "AND Password= " + "'" + password + "'" + 
-                    "AND RoleType= " + "'" + dolgozo +"';");
-            if (rs.next()) {
-                Regisztralt_Ember re = new Regisztralt_Ember();
-                re.setEmail(rs.getString("Email"));
-                re.setPassword(rs.getString("Password"));
-                re.setName(rs.getString("Name"));
-                re.setId(rs.getInt("UserID"));
-                re.setRole(rs.getInt("RoleType"));
+    public Regisztralt_Ember login_admin(String email, String password, int dolgozo) throws SQLException {
+        ResultSet rs = dbCon.executeQuery("SELECT * FROM users WHERE Email= " + "'" + email + "'" +  
+                "AND Password= " + "'" + password + "'" + 
+                "AND RoleType= " + "'" + dolgozo +"';");
+        if (rs.next()) {
+            Regisztralt_Ember re = new Regisztralt_Ember();
+            re.setEmail(rs.getString("Email"));
+            re.setPassword(rs.getString("Password"));
+            re.setName(rs.getString("Name"));
+            re.setId(rs.getInt("UserID"));
+            re.setRole(rs.getInt("RoleType"));
 
-                passLoginUserName = re.getName();
+            passLoginUserName = re.getName();
                 
-                return re;
+            return re;
             }
-        } catch (SQLException e) {
-            
-        }
         return null;
     }
     
@@ -115,51 +108,5 @@ public class Model {
         return lista;
     }
     
-    public ResultSet Catalog(int usedTextFields, String Writer, String Title, String ISBN) throws SQLException {
-        ResultSet rs = null;
-        
-        usedTextFields = 0;
-        
-        switch (usedTextFields) {
-            case 1:
-                rs = dbCon.executeQuery("SELECT * FROM books WHERE Author LIKE " 
-                        + "'" + "%" + Writer + "%" +"';");
-                break;
-            case 2:
-                rs = dbCon.executeQuery("SELECT * FROM books WHERE Title LIKE " 
-                        + "'" + "%" + Title + "%" + "';");
-                break;
-            case 3:
-                rs = dbCon.executeQuery("SELECT * FROM books WHERE Author LIKE " 
-                        + "'" + "%" + Writer + "%" + "' AND Title LIKE" 
-                                + "'" + "%" + Title + "%" +"';");
-                break;
-            case 4:
-                rs = dbCon.executeQuery("SELECT * FROM books WHERE ISBN LIKE " 
-                        + "'" + "%" + ISBN + "%" +"';");
-                break;
-            case 5:
-                rs = dbCon.executeQuery("SELECT * FROM books WHERE Author LIKE " 
-                        + "'" + "%" + Writer + "%" + "' AND ISBN LIKE" 
-                                + "'" + "%" + ISBN + "%" +"';");
-                break;
-            case 6:
-                rs = dbCon.executeQuery("SELECT * FROM books WHERE Title LIKE " 
-                        + "'" + "%" + Title + "%" + "' AND ISBN LIKE" 
-                                + "'" + "%" + ISBN + "%" +"';");
-                break;
-            case 7:
-                rs = dbCon.executeQuery("SELECT * FROM books WHERE Author LIKE " 
-                        + "'" + "%" + Writer + "%" + "' AND Title LIKE" 
-                                + "'" + "%" + Title + "%" + "' AND ISBN LIKE"
-                                        + "'" + "%" + ISBN + "%" + "';");
-                break;
-            default:
-                rs = dbCon.executeQuery("SELECT * FROM books;");
-                break;
-        }
-        
-        
-        return rs;
-    }
+    
 }
