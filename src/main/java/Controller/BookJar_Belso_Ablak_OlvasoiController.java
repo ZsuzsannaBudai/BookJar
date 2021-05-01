@@ -49,15 +49,21 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
 
     @FXML
     private TableColumn<Books, Integer> bookID;
-    
-    public int usedTextFields;
-
-    ObservableList<Books> data
-            = FXCollections.observableArrayList();
 
     @FXML
     void SearchButton_Pressed(ActionEvent event) throws SQLException {
+        ObservableList<Books> data 
+                = searchQuery(Writer_TextField.getText(), Title_TextField.getText(), ISBN_TextField.getText());
+
+        author.setCellValueFactory(new PropertyValueFactory<Books, String>("author"));
+        title.setCellValueFactory(new PropertyValueFactory<Books, String>("title"));
+        isbn.setCellValueFactory(new PropertyValueFactory<Books, String>("isbn"));
+        bookID.setCellValueFactory(new PropertyValueFactory<Books, Integer>("BookID"));
+
+        TableView.setItems(data);
+      
         queryBooks();
+
     }
 
     @FXML
@@ -68,6 +74,25 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.dbCon = MysqlCon.getInstance();
+        Model model = new Model();
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("Szia, ").append(model.passLoginUserName).append("! Válassz az alábbi menüpontok közül!");
+        BookJar_Main_Label.setText(sb.toString());  
+    }
+    
+    public ObservableList<Books> searchQuery(String author, String title, String isbn) throws SQLException{
+        
+        this.dbCon = MysqlCon.getInstance();
+        
+        ResultSet rs = null;
+        ObservableList<Books> data = FXCollections.observableArrayList();
+        
+        int usedTextFields = 0;
+
+        usedTextFields += (!author.equals("") ? 1 : 0);
+        usedTextFields += (!title.equals("") ? 2 : 0);
+        usedTextFields += (!isbn.equals("") ? 4 : 0);
 
         Model model = new Model();
 
@@ -91,43 +116,42 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
         switch (usedTextFields) {
             case 1:
                 rs = dbCon.executeQuery("SELECT * FROM books WHERE Author LIKE " 
-                        + "'" + "%" + Writer_TextField.getText() + "%" +"';");
+                        + "'" + "%" + author + "%" +"';");
                 break;
             case 2:
                 rs = dbCon.executeQuery("SELECT * FROM books WHERE Title LIKE " 
-                        + "'" + "%" + Title_TextField.getText() + "%" + "';");
+                        + "'" + "%" + title + "%" + "';");
                 break;
             case 3:
                 rs = dbCon.executeQuery("SELECT * FROM books WHERE Author LIKE " 
-                        + "'" + "%" + Writer_TextField.getText() + "%" + "' AND Title LIKE" 
-                                + "'" + "%" + Title_TextField.getText() + "%" +"';");
+                        + "'" + "%" + author + "%" + "' AND Title LIKE" 
+                                + "'" + "%" + title + "%" +"';");
                 break;
             case 4:
                 rs = dbCon.executeQuery("SELECT * FROM books WHERE ISBN LIKE " 
-                        + "'" + "%" + ISBN_TextField.getText() + "%" +"';");
+                        + "'" + "%" + isbn + "%" +"';");
                 break;
             case 5:
                 rs = dbCon.executeQuery("SELECT * FROM books WHERE Author LIKE " 
-                        + "'" + "%" + Writer_TextField.getText() + "%" + "' AND ISBN LIKE" 
-                                + "'" + "%" + ISBN_TextField.getText() + "%" +"';");
+                        + "'" + "%" + author + "%" + "' AND ISBN LIKE" 
+                                + "'" + "%" + isbn + "%" +"';");
                 break;
             case 6:
                 rs = dbCon.executeQuery("SELECT * FROM books WHERE Title LIKE " 
-                        + "'" + "%" + Title_TextField.getText() + "%" + "' AND ISBN LIKE" 
-                                + "'" + "%" + ISBN_TextField.getText() + "%" +"';");
+                        + "'" + "%" + title + "%" + "' AND ISBN LIKE" 
+                                + "'" + "%" + isbn + "%" +"';");
                 break;
             case 7:
                 rs = dbCon.executeQuery("SELECT * FROM books WHERE Author LIKE " 
-                        + "'" + "%" + Writer_TextField.getText() + "%" + "' AND Title LIKE" 
-                                + "'" + "%" + Title_TextField.getText() + "%" + "' AND ISBN LIKE"
-                                        + "'" + "%" + ISBN_TextField.getText() + "%" + "';");
+                        + "'" + "%" + author + "%" + "' AND Title LIKE" 
+                                + "'" + "%" + title + "%" + "' AND ISBN LIKE"
+                                        + "'" + "%" + isbn + "%" + "';");
                 break;
             default:
                 rs = dbCon.executeQuery("SELECT * FROM books;");
                 break;
         }
 
-        
         while (rs.next()) {
             Books book = new Books();
             book.setAuthor(rs.getString("Author"));
@@ -138,6 +162,9 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
             data.add(book);
         }
         
+        return data;
+    }
+    
         author.setCellValueFactory(new PropertyValueFactory<Books, String>("author"));
         title.setCellValueFactory(new PropertyValueFactory<Books, String>("title"));
         isbn.setCellValueFactory(new PropertyValueFactory<Books, String>("isbn"));
@@ -145,5 +172,4 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
 
         TableView.setItems(data);
     }
-
 }
