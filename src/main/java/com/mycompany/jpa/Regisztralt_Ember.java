@@ -23,6 +23,7 @@ public class Regisztralt_Ember implements Serializable{
     private String Password;
     private int Role;
     private int id;
+    private String Date;
 
     @Basic                                                  // @Basic -> Adatbázisban az oszlopok létrehozása az adott változóhoz
     public String getName() {
@@ -60,6 +61,15 @@ public class Regisztralt_Ember implements Serializable{
     public void setRole(int Role) {
         this.Role = Role;
     }
+    
+    @Basic
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String Date) {
+        this.Date = Date;
+    }
 
     @GeneratedValue
     @Id
@@ -70,4 +80,11 @@ public class Regisztralt_Ember implements Serializable{
     public void setId(int id) {
         this.id = id;
     } 
+    /*
+    @Override
+    public String toString() {
+        return String.format(getId() + " " + getName() + " " + getEmail() + " " + getRole() + "\n");
+    }
+    */
+    
 }
