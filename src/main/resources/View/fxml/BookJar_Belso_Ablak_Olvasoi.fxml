@@ -70,9 +70,9 @@
                               <TableView fx:id="TableView" editable="true" layoutX="388.0" layoutY="13.0" prefHeight="327.0" prefWidth="598.0">
                                 <columns>
                                   <TableColumn fx:id="author" prefWidth="126.0" text="Szerző" />
-                                  <TableColumn fx:id="title" prefWidth="274.0" text="Cím" />
-                                    <TableColumn fx:id="isbn" prefWidth="112.0" text="ISBN" />
-                                    <TableColumn fx:id="bookID" prefWidth="77.0" text="BookID" />
+                                  <TableColumn fx:id="title" prefWidth="247.0" text="Cím" />
+                                    <TableColumn fx:id="isbn" prefWidth="123.0" text="ISBN" />
+                                    <TableColumn fx:id="bookID" prefWidth="93.0" text="BookID" />
                                 </columns>
                               </TableView>
                            </children></AnchorPane>
