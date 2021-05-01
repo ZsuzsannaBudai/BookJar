@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -23,6 +24,9 @@ public class Regisztracio_AblakController implements Initializable {
     MysqlCon dbCon;
 
     public boolean dolgozo;
+    
+    @FXML
+    public Button SendButton;
     
     @FXML
     private TextField Name_TextField;
@@ -38,12 +42,31 @@ public class Regisztracio_AblakController implements Initializable {
     
     @FXML
     private Label ErrorMessage_Label;
+    
+    public int emailIsCorrect(String s){  
+        String[] splittedEmail = s.split("\\@");
+        if(splittedEmail.length == 2)
+        {
+            String[] splittedEmail_2 = splittedEmail[1].split("\\.");
+            if(splittedEmail_2.length == 2)
+                return 1;
+        }
+        return 0;
+    }
+    
+    public int passwordsAreEquals(String s1, String s2){
+        if(s1.equals(s2))
+            return 1;
+        return 0;
+    }
 
     @FXML
     void SendButtonPush(ActionEvent event) throws IOException, ClassNotFoundException, SQLException {
         Model model = new Model();
-        
-        if((model.register(Name_TextField.getText(), Email_TextField.getText(), Password_TextField.getText())) == 0){
+
+        if(emailIsCorrect(Email_TextField.getText()) == 1 
+                && passwordsAreEquals(Password_TextField.getText(), PasswordAgain_TextField.getText()) == 1
+                && ((model.register(Name_TextField.getText(), Email_TextField.getText(), Password_TextField.getText())) == 0)){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/fxml/Bejelentkezo_Ablak.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Bejelentkezés");

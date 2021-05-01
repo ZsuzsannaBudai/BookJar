@@ -4,7 +4,10 @@ import Model.Model;
 import com.mycompany.jpa.MysqlCon;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,7 +38,7 @@ public class Bejelentkezo_AblakController implements Initializable {
     private Label ErrorMessage_Label;
 
     @FXML
-    void LoginWindow_Button_Pushed(ActionEvent event) throws IOException {
+    void LoginWindow_Button_Pushed(ActionEvent event) throws IOException, SQLException {
         Model model = new Model();
 
         if (dolgozo) {

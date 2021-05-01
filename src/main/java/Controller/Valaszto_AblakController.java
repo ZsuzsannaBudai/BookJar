@@ -53,4 +53,5 @@ public class Valaszto_AblakController implements Initializable {
         Regisztracio_AblakController controller = loader.getController();
         stage.show();
     }  
+
 }
