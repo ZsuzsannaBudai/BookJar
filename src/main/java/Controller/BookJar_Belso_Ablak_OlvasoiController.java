@@ -142,8 +142,6 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
 
             data.add(book);
         }
-        
         return data;
     }
-    
 }

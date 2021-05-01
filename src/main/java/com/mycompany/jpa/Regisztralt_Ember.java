@@ -61,7 +61,7 @@ public class Regisztralt_Ember implements Serializable{
     public void setRole(int Role) {
         this.Role = Role;
     }
-    
+
     @Basic
     public String getDate() {
         return Date;
@@ -80,11 +80,4 @@ public class Regisztralt_Ember implements Serializable{
     public void setId(int id) {
         this.id = id;
     } 
-    /*
-    @Override
-    public String toString() {
-        return String.format(getId() + " " + getName() + " " + getEmail() + " " + getRole() + "\n");
-    }
-    */
-    
 }

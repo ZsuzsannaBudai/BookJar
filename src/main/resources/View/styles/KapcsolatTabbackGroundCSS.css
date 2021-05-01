@@ -1,0 +1,9 @@
+.dialog-pane{
+    -fx-background-color: transparent;
+    -fx-opacity: 1;
+}
+
+.dialog-pane:content .content-panel{
+    -fx-text-fill: white;
+}
+ 
