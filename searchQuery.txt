@@ -1,0 +1,22 @@
+George R. R. Martin,A Game of Thrones (Trónok harca),0-553-10354-7,1
+George R. R. Martin,A Clash of Kings (Királyok csatája),0-00-224585-X,2
+George R. R. Martin,A Storm of Swords (Kardok vihara),0-553-10663-5,3
+George R. R. Martin,A Feast for Crows (Varjak lakomája),0-00-224743-7,4
+George R. R. Martin,A Dance with Dragons (Sárkányok tánca),978-0553801477,5
+J. K. Rowling,Philosopher's Stone (Bölcsek köve),0-7475-3269-9,6
+J. K. Rowling,Chamber of Secrets (Titkok kamrája),0-7475-3849-2,7
+J. K. Rowling,Prisoner of Azkaban (Az azkabani fogoly),0-7475-4215-5,8
+J. K. Rowling,Goblet of Fire (Tûz serlege),0-7475-4624-X,9
+J. K. Rowling,Order of the Phoenix (Fõnix rendje),0-7475-5100-6,10
+J. K. Rowling,Half-Blood Prince (Félvér herceg),0-7475-8108-8,11
+J. K. Rowling,Deathly Hallows (Halál ereklyéi),0-545-01022-5,12
+Sarah J. Maas,Throne of Glass (Üvegtrón),9781619630345,13
+Sarah J. Maas,Crown of Midnight (Éjkorona),9781619630642,14
+Sarah J. Maas,Heir of Fire (A tûz örököse),9781619630673,15
+Sarah J. Maas,Queen of Shadows (Árnyak királynõje),9781619636064,16
+Sarah J. Maas,Empire of Storms (Viharok birodalma),9781619636071,17
+Sarah J. Maas,Tower of Dawn (A hajnal tornya),9781681195773,18
+Sarah J. Maas,Kingdom of Ash (Felperzselt királyság),9781619636101,19
+Leigh Bardugo,Shadow and Bone (Árnyak és csont),978-0-8050-9459-6,20
+Leigh Bardugo,Siege and Storm (Ostrom és vihar),9781780621708,21
+Leigh Bardugo,Ruin and rising (Pusztulás és felemelkedés),9781510105256,22
