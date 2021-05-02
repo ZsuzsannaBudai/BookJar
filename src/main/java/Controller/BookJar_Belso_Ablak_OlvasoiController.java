@@ -163,6 +163,7 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
         }
         return data;
     }
+
         author.setCellValueFactory(new PropertyValueFactory<Books, String>("author"));
         title.setCellValueFactory(new PropertyValueFactory<Books, String>("title"));
         isbn.setCellValueFactory(new PropertyValueFactory<Books, String>("isbn"));
