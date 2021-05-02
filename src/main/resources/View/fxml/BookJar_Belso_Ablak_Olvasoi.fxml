@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DialogPane?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -19,7 +18,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../styles/belsoAblakCSS.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookJar_Belso_Ablak_OlvasoiController">
    <children>
-      <GridPane alignment="CENTER" prefHeight="500" prefWidth="1000">
+      <GridPane id="AnchorPane1" alignment="CENTER" prefHeight="500" prefWidth="1000" stylesheets="@../styles/belsoAblakCSS.css">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -28,7 +27,7 @@
           <RowConstraints maxHeight="403.2000076293945" minHeight="10.0" prefHeight="403.2000076293945" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="BookJar_Main_Label" alignment="CENTER" prefHeight="124.0" prefWidth="1000.0" text="..." textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="BookJar_Main_Label" alignment="CENTER" prefHeight="124.0" prefWidth="800.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css" text="..." textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="36.0" />
                </font>
@@ -45,35 +44,35 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Label layoutX="14.0" layoutY="95.0" text="Író" textFill="#07ff00" AnchorPane.bottomAnchor="280.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="940.0" AnchorPane.topAnchor="50.0">
+                              <Label layoutX="13.0" layoutY="57.0" prefHeight="32.0" prefWidth="40.0" text="Író" textFill="#07ff00" AnchorPane.bottomAnchor="263.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="947.0" AnchorPane.topAnchor="57.0">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="System Bold" size="24.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="18.0" layoutY="138.0" text="Cím" textFill="#00ff0d" AnchorPane.bottomAnchor="230.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="940.0" AnchorPane.topAnchor="100.0">
+                              <Label layoutX="10.0" layoutY="107.0" prefHeight="32.0" prefWidth="45.0" text="Cím" textFill="#00ff0d" AnchorPane.bottomAnchor="213.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="945.0" AnchorPane.topAnchor="107.0">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="System Bold" size="24.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="14.0" layoutY="188.0" text="ISBN" textFill="#00ff11" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="940.0" AnchorPane.topAnchor="150.0">
+                              <Label layoutX="10.0" layoutY="158.0" prefHeight="30.0" prefWidth="61.0" text="ISBN" textFill="#00ff11" AnchorPane.bottomAnchor="164.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="929.0" AnchorPane.topAnchor="158.0">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="System Bold" size="24.0" />
                                  </font>
                               </Label>
                               <TextField fx:id="Writer_TextField" layoutX="77.0" layoutY="60.0" prefHeight="25.0" prefWidth="300.0" />
                               <TextField fx:id="Title_TextField" layoutX="77.0" layoutY="110.0" prefHeight="25.0" prefWidth="300.0" />
                               <TextField fx:id="ISBN_TextField" layoutX="77.0" layoutY="160.0" prefHeight="25.0" prefWidth="300.0" />
-                              <Button layoutX="292.0" layoutY="195.0" mnemonicParsing="false" onAction="#SearchButton_Pressed" text="Keresés">
+                              <Button layoutX="174.0" layoutY="213.0" mnemonicParsing="false" onAction="#SearchButton_Pressed" style="-fx-background-color: orange;" text="Keresés">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Button>
-                              <TableView fx:id="TableView" editable="true" layoutX="388.0" layoutY="13.0" prefHeight="327.0" prefWidth="598.0">
+                              <TableView fx:id="TableView" editable="true" fixedCellSize="0.0" layoutX="388.0" layoutY="13.0" prefHeight="327.0" prefWidth="598.0" styleClass="tbl" stylesheets="@../styles/KatalogusTabCSS.css">
                                 <columns>
                                   <TableColumn fx:id="author" prefWidth="126.0" text="Szerző" />
                                   <TableColumn fx:id="title" prefWidth="274.0" text="Cím" />
                                     <TableColumn fx:id="isbn" prefWidth="112.0" text="ISBN" />
-                                    <TableColumn fx:id="bookID" prefWidth="77.0" text="BookID" />
+                                    <TableColumn fx:id="bookID" prefWidth="77.0" text="Foglalás" />
                                 </columns>
                               </TableView>
                            </children></AnchorPane>
@@ -84,11 +83,11 @@
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                   </content>
                 </Tab>
-                <Tab text="Felhasználói lista">
+                <Tab text="Felhasználó lista">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="Felhaszn_Lista_TableView" layoutX="14.0" layoutY="36.0" prefHeight="300.0" prefWidth="700.0">
+                              <TableView fx:id="Felhaszn_Lista_TableView" layoutX="14.0" layoutY="36.0" prefHeight="300.0" prefWidth="700.0" stylesheets="@../styles/KatalogusTabCSS.css">
                                 <columns>
                                   <TableColumn prefWidth="210.0" text="Név" />
                                   <TableColumn prefWidth="198.0" text="Email" />
@@ -106,18 +105,35 @@
                 </Tab>
                 <Tab text="Hasznos infók">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    <AnchorPane id="AnchorPane2" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css">
+                           <children>
+                              <Label layoutX="14.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css" text="Elakadtál az alkalmazás használata közben?&#10;&#10;Itt egy kis segítség:&#10;&#10;Katalógus fül alatt:&#10;- tudsz író, cím, isbn szerint keresni&#10;- a keresést a gomb segítségével tudod elindítani&#10;- ha a könyvtárunkban megvan a keresett könyv, &#10;   jobb oldalt egy táblázatban látod&#10;- a táblázatban le tudod foglalni az adott könyvet&#10;&#10;Kérelmeim fül alatt:&#10;- meg tudod tekinteni a foglalt könyveidet, és a státuszukat&#10;" textFill="#fff800">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="566.0" layoutY="27.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css" text="Felhasználó lista fül alatt:&#10;- meg tudod tekinteni az összes eddigi regisztrált &#10;felhasználót a könyvtárban&#10;&#10;Hasznos infók fül alatt:&#10;- itt jársz most :)&#10;&#10;Kapcsolat fül alatt:&#10;- elérhetőségeket találsz&#10;&#10;Reméljük tudtunk segíteni! :)" textFill="#fff800">
+                                 <font>
+                                    <Font name="System Bold Italic" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children></AnchorPane>
                   </content>
                 </Tab>
                 <Tab text="Kapcsolat">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <AnchorPane id="AnchorPane2" maxHeight="352.0" maxWidth="1000.0" minHeight="352.0" minWidth="1000.0" prefHeight="352.0" prefWidth="1000.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css">
                            <children>
-                              <DialogPane contentText="Kérdésed van?  &#10;Keress minket az alábbi elérhetőségek bármelyikén:&#10;&#10;E-mail:.&#10;budaizsuzsannaemese@bookjar.com&#10;geregabor@bookjar.com&#10;vargakristof@bookjar.com&#10;dankalajos@bookjar.com&#10;&#10;Telefon: &#10;06-30/123-4567&#10;&#10;Címünk:&#10;5000 Könyvtár, Könyv utca 12." layoutX="228.0" layoutY="1.0" minHeight="350.0" minWidth="500.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css">
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                              </DialogPane>
+                              <Label id="label" layoutX="35.0" layoutY="-14.0" prefHeight="351.0" prefWidth="775.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css" text="     &#9;&#9;&#9;                       Kérdésed van?&#10;&#10;Keress minket az alábbi elérhetőségek bármelyikén:&#10;&#10;E-mail:&#10;budaizsuzsannaemese@bookjar.com&#10;geregabor@bookjar.com&#10;vargakristof@bookjar.com&#10;dankalajos@bookjar.com" textFill="#fff800">
+                                 <font>
+                                    <Font name="System Bold Italic" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label id="label" layoutX="589.0" layoutY="136.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css" text="Telefon: &#10;06-30/123-4567&#10;&#10;Címünk:&#10;5000 Könyvtár, Könyv utca 12." textFill="#fff800">
+                                 <font>
+                                    <Font name="System Bold Italic" size="24.0" />
+                                 </font>
+                              </Label>
                            </children></AnchorPane>
                   </content>
                 </Tab>
@@ -126,10 +142,13 @@
                   <Insets left="5.0" />
                </GridPane.margin>
             </TabPane>
-            <Button mnemonicParsing="false" onAction="#Exit_Pushed" prefHeight="39.0" prefWidth="102.0" text="Kijelentkezés" GridPane.halignment="LEFT">
+            <Button id="button2" maxWidth="150.0" minWidth="100.0" mnemonicParsing="false" onAction="#Exit_Pushed" prefHeight="58.0" prefWidth="100.0" stylesheets="@../styles/bejelentkezoRegisztraciosAblakCSS.css" text="Kijelentkezés" GridPane.halignment="LEFT">
                <GridPane.margin>
-                  <Insets bottom="30.0" left="880.0" />
+                  <Insets bottom="10.0" left="830.0" />
                </GridPane.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </Button>
          </children>
       </GridPane>
