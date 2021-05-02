@@ -8,10 +8,9 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-/**
- *
- * @author bzse9
- */
+import java.util.List;
+import Controller.*;
+
 public class Model {
     
     MysqlCon dbCon;
