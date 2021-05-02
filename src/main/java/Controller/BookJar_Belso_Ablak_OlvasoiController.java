@@ -52,7 +52,6 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
 
     @FXML
     void SearchButton_Pressed(ActionEvent event) throws SQLException {
-
         ObservableList<Books> data 
                 = searchQuery(Writer_TextField.getText(), Title_TextField.getText(), ISBN_TextField.getText());
 
@@ -62,7 +61,9 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
         bookID.setCellValueFactory(new PropertyValueFactory<Books, Integer>("BookID"));
 
         TableView.setItems(data);
-        
+      
+        queryBooks();
+
     }
 
     @FXML
@@ -73,7 +74,6 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.dbCon = MysqlCon.getInstance();
-
         Model model = new Model();
 
         StringBuilder sb = new StringBuilder();
@@ -93,6 +93,25 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
         usedTextFields += (!author.equals("") ? 1 : 0);
         usedTextFields += (!title.equals("") ? 2 : 0);
         usedTextFields += (!isbn.equals("") ? 4 : 0);
+
+        Model model = new Model();
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("Szia, ").append(model.passLoginUserName).append("! Válassz az alábbi menüpontok közül!");
+        BookJar_Main_Label.setText(sb.toString());  
+    }
+    
+    public void queryBooks() throws SQLException{
+        ResultSet rs = null;
+        data.clear();
+        
+        usedTextFields = 0;
+        
+        TableView.setEditable(true);
+
+        usedTextFields += (!Writer_TextField.getText().equals("") ? 1 : 0);
+        usedTextFields += (!Title_TextField.getText().equals("") ? 2 : 0);
+        usedTextFields += (!ISBN_TextField.getText().equals("") ? 4 : 0);
 
         switch (usedTextFields) {
             case 1:
@@ -143,5 +162,12 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
             data.add(book);
         }
         return data;
+    }
+        author.setCellValueFactory(new PropertyValueFactory<Books, String>("author"));
+        title.setCellValueFactory(new PropertyValueFactory<Books, String>("title"));
+        isbn.setCellValueFactory(new PropertyValueFactory<Books, String>("isbn"));
+        bookID.setCellValueFactory(new PropertyValueFactory<Books, Integer>("BookID"));
+
+        TableView.setItems(data);
     }
 }
