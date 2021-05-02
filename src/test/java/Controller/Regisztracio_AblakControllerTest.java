@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+/*
 package Controller;
+
 
 import Model.Model;
 import com.mycompany.jpa.Books;
@@ -26,20 +29,18 @@ import java.util.List;
 import java.util.Scanner;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventDispatchChain;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-
+*/
 /**
  *
  * @author Gabi
  */
-public class Regisztracio_AblakControllerTest {
+/*public class Regisztracio_AblakControllerTest {
 
     MysqlCon dbCon;
 
@@ -454,3 +455,4 @@ public class Regisztracio_AblakControllerTest {
     }
 
 }
+*/
