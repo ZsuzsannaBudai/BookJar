@@ -16,7 +16,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../styles/belsoAblakCSS.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookJar_Belso_Ablak_OlvasoiController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../styles/belsoAblakCSS.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookJar_Belso_Ablak_OlvasoiController">
    <children>
       <GridPane id="AnchorPane1" alignment="CENTER" prefHeight="500" prefWidth="1000" stylesheets="@../styles/belsoAblakCSS.css">
         <columnConstraints>
@@ -38,7 +38,7 @@
                      </color>
                   </Shadow>
                </effect></Label>
-            <TabPane maxWidth="1000.0" minWidth="1000.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMinWidth="160.0" GridPane.rowIndex="1">
+            <TabPane fx:id="TabPanel" maxWidth="1000.0" minWidth="1000.0" onMouseClicked="#Pressed_a_new_Tab" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMinWidth="160.0" GridPane.rowIndex="1">
               <tabs>
                 <Tab text="Katalógus">
                   <content>
@@ -75,12 +75,24 @@
                                     <TableColumn fx:id="bookID" prefWidth="77.0" text="Foglalás" />
                                 </columns>
                               </TableView>
+                              <Label fx:id="ErrorMessage_Label" layoutX="115.0" layoutY="188.0" prefHeight="17.0" prefWidth="204.0" text="Hiba lekérdezés/kölcsönzés közben!" textFill="RED" />
+                              <Button fx:id="Landing_Button" layoutX="285.0" layoutY="296.0" mnemonicParsing="false" onAction="#Landing_a_Book" prefHeight="42.0" prefWidth="92.0" text="Kölcsönzés" />
                            </children></AnchorPane>
                   </content>
                 </Tab>
-                <Tab text="Kérelmeim">
+                <Tab text="Kölcsönzött">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="TableView_Kolcsonzott" layoutX="14.0" layoutY="14.0" prefHeight="323.0" prefWidth="700.0">
+                                <columns>
+                                  <TableColumn fx:id="author_lend" prefWidth="167.0" text="Író" />
+                                  <TableColumn fx:id="title_lend" prefWidth="193.0" text="Cím" />
+                                    <TableColumn fx:id="lend_date" prefWidth="190.0" text="Kölcsönzés dátuma" />
+                                    <TableColumn fx:id="lend_date_end" prefWidth="149.0" text="Lejárat dátuma" />
+                                </columns>
+                              </TableView>
+                           </children></AnchorPane>
                   </content>
                 </Tab>
                 <Tab text="Felhasználó lista">
