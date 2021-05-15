@@ -14,10 +14,19 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import com.mycompany.jpa.*;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
 
@@ -51,9 +60,118 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
     private TableColumn<Books, Integer> bookID;
 
     @FXML
+    private TableView<Lending> TableView_Kolcsonzott;
+
+    @FXML
+    private TableColumn<Lending, String> author_lend;
+
+    @FXML
+    private TableColumn<Lending, String> title_lend;
+
+    @FXML
+    private TableColumn<Lending, String> lend_date;
+
+    @FXML
+    private TableColumn<Lending, String> lend_date_end;
+
+    @FXML
+    private Button Landing_Button;
+
+    @FXML
+    private Label ErrorMessage_Label;
+
+    @FXML
+    private TabPane TabPanel;
+
+    @FXML
+    void Pressed_a_new_Tab(MouseEvent event) throws SQLException {
+        if (TabPanel.getSelectionModel().getSelectedItem().getText().equals("Kölcsönzött")) {
+            ObservableList<Lending> data
+                    = lendingQuery();
+
+            author_lend.setCellValueFactory(new PropertyValueFactory<Lending, String>("author_lending"));
+            title_lend.setCellValueFactory(new PropertyValueFactory<Lending, String>("title_lending"));
+            lend_date.setCellValueFactory(new PropertyValueFactory<Lending, String>("lend_date"));
+            lend_date_end.setCellValueFactory(new PropertyValueFactory<Lending, String>("lend_date_end"));
+
+            TableView_Kolcsonzott.setItems(data);
+        }
+    }
+
+    @FXML
+    void Landing_a_Book(ActionEvent event) throws SQLException {
+
+        this.dbCon = MysqlCon.getInstance();
+
+        Model model = new Model();
+        int userID = model.passLoginUserID;
+
+        Books book = TableView.getSelectionModel().getSelectedItem();
+
+        ResultSet rs = null;
+        rs = dbCon.executeQuery("SELECT * FROM lending l, books b WHERE l.bookID = b.bookID;");
+
+        List<Lending> data = new ArrayList<Lending>();
+
+        while (rs.next()) {
+            Lending lending = new Lending();
+            lending.setAuthor_lending(rs.getString("Author"));
+            lending.setTitle_lending(rs.getString("Title"));
+            lending.setLend_date(rs.getString("lend_date"));
+            lending.setLend_date_end(rs.getString("lend_date_end"));
+
+            data.add(lending);
+        }
+
+        boolean errorInLending = false;
+        for (Lending l : data) {
+            if (l.getAuthor_lending().equals(book.getAuthor()) && l.getTitle_lending().equals(book.getTitle())) {
+                errorInLending = true;
+            }
+        }
+
+        if (book == null || errorInLending) {
+            ErrorMessage_Label.setVisible(true);
+
+            Task<Void> sleeper = new Task<Void>() {
+                @Override
+                protected Void call() throws Exception {
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException k) {
+                    }
+                    return null;
+                }
+            };
+
+            new Thread(sleeper).start();
+            sleeper.setOnSucceeded(b -> {
+                ErrorMessage_Label.setVisible(false);
+            });
+        } else {
+            Statement stmt = dbCon.mysqlconnection.createStatement();
+
+            LocalDate localdate = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String formattedDate = localdate.format(formatter);
+
+            LocalDate localdate2 = LocalDate.now().plusDays(7);
+            DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String formattedDate2 = localdate2.format(formatter2);
+            
+            String sevenDays = "7";
+
+            stmt.executeUpdate("INSERT INTO lending(bookID, UserID, lend_date, lend_date_end) VALUE ('"
+                    + book.getBookID() + "','" + Model.passLoginUserID + "','" + formattedDate + "','" + formattedDate2 + "');");
+        }
+    }
+
+    @FXML
     void SearchButton_Pressed(ActionEvent event) throws SQLException {
 
-        ObservableList<Books> data 
+        TableView.setVisible(true);
+        
+        ObservableList<Books> data
                 = searchQuery(Writer_TextField.getText(), Title_TextField.getText(), ISBN_TextField.getText());
 
         author.setCellValueFactory(new PropertyValueFactory<Books, String>("author"));
@@ -62,7 +180,7 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
         bookID.setCellValueFactory(new PropertyValueFactory<Books, Integer>("BookID"));
 
         TableView.setItems(data);
-        
+
     }
 
     @FXML
@@ -73,21 +191,24 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.dbCon = MysqlCon.getInstance();
+        ErrorMessage_Label.setVisible(false);
+        TableView.setVisible(false);
 
         Model model = new Model();
 
         StringBuilder sb = new StringBuilder();
         sb.append("Szia, ").append(model.passLoginUserName).append("! Válassz az alábbi menüpontok közül!");
-        BookJar_Main_Label.setText(sb.toString());  
+        BookJar_Main_Label.setText(sb.toString());
     }
-    
-    public ObservableList<Books> searchQuery(String author, String title, String isbn) throws SQLException{
-        
+
+    public ObservableList<Books> searchQuery(String author, String title, String isbn) throws SQLException {
+
         this.dbCon = MysqlCon.getInstance();
-        
+
         ResultSet rs = null;
         ObservableList<Books> data = FXCollections.observableArrayList();
-        
+
+        //Books book = TableView.getSelectionModel().getSelectedItem();
         int usedTextFields = 0;
 
         usedTextFields += (!author.equals("") ? 1 : 0);
@@ -96,37 +217,37 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
 
         switch (usedTextFields) {
             case 1:
-                rs = dbCon.executeQuery("SELECT * FROM books WHERE Author LIKE " 
-                        + "'" + "%" + author + "%" +"';");
+                rs = dbCon.executeQuery("SELECT * FROM books WHERE Author LIKE "
+                        + "'" + "%" + author + "%" + "';");
                 break;
             case 2:
-                rs = dbCon.executeQuery("SELECT * FROM books WHERE Title LIKE " 
+                rs = dbCon.executeQuery("SELECT * FROM books WHERE Title LIKE "
                         + "'" + "%" + title + "%" + "';");
                 break;
             case 3:
-                rs = dbCon.executeQuery("SELECT * FROM books WHERE Author LIKE " 
-                        + "'" + "%" + author + "%" + "' AND Title LIKE" 
-                                + "'" + "%" + title + "%" +"';");
+                rs = dbCon.executeQuery("SELECT * FROM books WHERE Author LIKE "
+                        + "'" + "%" + author + "%" + "' AND Title LIKE"
+                        + "'" + "%" + title + "%" + "';");
                 break;
             case 4:
-                rs = dbCon.executeQuery("SELECT * FROM books WHERE ISBN LIKE " 
-                        + "'" + "%" + isbn + "%" +"';");
+                rs = dbCon.executeQuery("SELECT * FROM books WHERE ISBN LIKE "
+                        + "'" + "%" + isbn + "%" + "';");
                 break;
             case 5:
-                rs = dbCon.executeQuery("SELECT * FROM books WHERE Author LIKE " 
-                        + "'" + "%" + author + "%" + "' AND ISBN LIKE" 
-                                + "'" + "%" + isbn + "%" +"';");
+                rs = dbCon.executeQuery("SELECT * FROM books WHERE Author LIKE "
+                        + "'" + "%" + author + "%" + "' AND ISBN LIKE"
+                        + "'" + "%" + isbn + "%" + "';");
                 break;
             case 6:
-                rs = dbCon.executeQuery("SELECT * FROM books WHERE Title LIKE " 
-                        + "'" + "%" + title + "%" + "' AND ISBN LIKE" 
-                                + "'" + "%" + isbn + "%" +"';");
+                rs = dbCon.executeQuery("SELECT * FROM books WHERE Title LIKE "
+                        + "'" + "%" + title + "%" + "' AND ISBN LIKE"
+                        + "'" + "%" + isbn + "%" + "';");
                 break;
             case 7:
-                rs = dbCon.executeQuery("SELECT * FROM books WHERE Author LIKE " 
-                        + "'" + "%" + author + "%" + "' AND Title LIKE" 
-                                + "'" + "%" + title + "%" + "' AND ISBN LIKE"
-                                        + "'" + "%" + isbn + "%" + "';");
+                rs = dbCon.executeQuery("SELECT * FROM books WHERE Author LIKE "
+                        + "'" + "%" + author + "%" + "' AND Title LIKE"
+                        + "'" + "%" + title + "%" + "' AND ISBN LIKE"
+                        + "'" + "%" + isbn + "%" + "';");
                 break;
             default:
                 rs = dbCon.executeQuery("SELECT * FROM books;");
@@ -142,6 +263,29 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
 
             data.add(book);
         }
+
         return data;
     }
+
+    public ObservableList<Lending> lendingQuery() throws SQLException {
+        this.dbCon = MysqlCon.getInstance();
+        Model model = new Model();
+
+        ObservableList<Lending> data = FXCollections.observableArrayList();
+        ResultSet rs = null;
+        rs = dbCon.executeQuery("SELECT * FROM lending l, books b WHERE l.bookID = b.bookID AND UserID = " + Model.passLoginUserID + ";");
+
+        while (rs.next()) {
+            Lending lending = new Lending();
+            lending.setAuthor_lending(rs.getString("Author"));
+            lending.setTitle_lending(rs.getString("Title"));
+            lending.setLend_date(rs.getString("lend_date"));
+            lending.setLend_date_end(rs.getString("lend_date_end"));
+
+            data.add(lending);
+        }
+
+        return data;
+    }
+
 }
