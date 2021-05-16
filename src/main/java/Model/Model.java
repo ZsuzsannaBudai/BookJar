@@ -16,6 +16,7 @@ public class Model {
     MysqlCon dbCon;
     
     public static String passLoginUserName;
+    public static int passLoginUserID;
 
     public Model() {
         this.dbCon = MysqlCon.getInstance();
@@ -34,7 +35,8 @@ public class Model {
             re.setRole(rs.getInt("RoleType")); 
                 
             passLoginUserName = re.getName();
-                
+            passLoginUserID = re.getId();    
+           
             return re;
             }
 
