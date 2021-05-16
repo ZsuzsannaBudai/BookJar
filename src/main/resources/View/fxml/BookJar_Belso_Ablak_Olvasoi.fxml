@@ -16,7 +16,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../styles/belsoAblakCSS.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookJar_Belso_Ablak_OlvasoiController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../styles/belsoAblakCSS.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookJar_Belso_Ablak_OlvasoiController">
    <children>
       <GridPane id="AnchorPane1" alignment="CENTER" prefHeight="500" prefWidth="1000" stylesheets="@../styles/belsoAblakCSS.css">
         <columnConstraints>
@@ -62,21 +62,32 @@
                               <TextField fx:id="Writer_TextField" layoutX="77.0" layoutY="60.0" prefHeight="25.0" prefWidth="300.0" />
                               <TextField fx:id="Title_TextField" layoutX="77.0" layoutY="110.0" prefHeight="25.0" prefWidth="300.0" />
                               <TextField fx:id="ISBN_TextField" layoutX="77.0" layoutY="160.0" prefHeight="25.0" prefWidth="300.0" />
-                              <Button layoutX="174.0" layoutY="213.0" mnemonicParsing="false" onAction="#SearchButton_Pressed" style="-fx-background-color: orange;" text="Keresés">
+                              <Button layoutX="175.0" layoutY="238.0" mnemonicParsing="false" onAction="#SearchButton_Pressed" style="-fx-background-color: orange;" text="Keresés">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Button>
-                              <TableView fx:id="TableView" editable="true" fixedCellSize="0.0" layoutX="388.0" layoutY="13.0" prefHeight="327.0" prefWidth="598.0" styleClass="tbl" stylesheets="@../styles/KatalogusTabCSS.css">
+                              <TableView fx:id="TableView" editable="true" fixedCellSize="0.0" layoutX="438.0" layoutY="12.0" prefHeight="265.0" prefWidth="512.0" styleClass="tbl" stylesheets="@../styles/KatalogusTabCSS.css">
                                 <columns>
                                   <TableColumn fx:id="author" prefWidth="126.0" text="Szerző" />
                                   <TableColumn fx:id="title" prefWidth="274.0" text="Cím" />
                                     <TableColumn fx:id="isbn" prefWidth="112.0" text="ISBN" />
-                                    <TableColumn fx:id="bookID" prefWidth="77.0" text="Foglalás" />
+                                    <TableColumn fx:id="bookID" prefWidth="75.0" text="BookID" />
                                 </columns>
                               </TableView>
-                              <Label fx:id="ErrorMessage_Label" layoutX="115.0" layoutY="188.0" prefHeight="17.0" prefWidth="204.0" text="Hiba lekérdezés/kölcsönzés közben!" textFill="RED" />
-                              <Button fx:id="Landing_Button" layoutX="285.0" layoutY="296.0" mnemonicParsing="false" onAction="#Landing_a_Book" prefHeight="42.0" prefWidth="92.0" text="Kölcsönzés" />
+                              <Label fx:id="ErrorMessage_Label" layoutX="51.0" layoutY="188.0" prefHeight="38.0" prefWidth="352.0" text="Hiba lekérdezés/kölcsönzés közben!" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold Italic" size="20.0" />
+                                 </font></Label>
+                              <Button fx:id="Landing_Button" layoutX="648.0" layoutY="295.0" mnemonicParsing="false" onAction="#Landing_a_Book" prefHeight="42.0" prefWidth="115.0" style="-fx-background-color: orange;" text="Kölcsönzés">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></Button>
+                              <Label fx:id="successfullBooking" layoutX="138.0" layoutY="192.0" text="Sikeres kölcsönzés!" textFill="#f70000">
+                                 <font>
+                                    <Font name="System Bold Italic" size="20.0" />
+                                 </font>
+                              </Label>
                            </children></AnchorPane>
                   </content>
                 </Tab>
@@ -84,7 +95,7 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="TableView_Kolcsonzott" layoutX="14.0" layoutY="14.0" prefHeight="323.0" prefWidth="700.0">
+                              <TableView fx:id="TableView_Kolcsonzott" layoutX="150.0" layoutY="50.0" prefHeight="288.0" prefWidth="700.0" stylesheets="@../styles/KatalogusTabCSS.css">
                                 <columns>
                                   <TableColumn fx:id="author_lend" prefWidth="167.0" text="Író" />
                                   <TableColumn fx:id="title_lend" prefWidth="193.0" text="Cím" />
@@ -92,6 +103,11 @@
                                     <TableColumn fx:id="lend_date_end" prefWidth="149.0" text="Lejárat dátuma" />
                                 </columns>
                               </TableView>
+                              <Label layoutX="374.0" layoutY="14.0" prefHeight="35.0" prefWidth="251.0" text="Kölcsönzött könyveid" textFill="#0022ff">
+                                 <font>
+                                    <Font name="System Bold Italic" size="24.0" />
+                                 </font>
+                              </Label>
                            </children></AnchorPane>
                   </content>
                 </Tab>
@@ -99,17 +115,17 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="Felhaszn_Lista_TableView" layoutX="14.0" layoutY="36.0" prefHeight="300.0" prefWidth="700.0" stylesheets="@../styles/KatalogusTabCSS.css">
+                              <TableView fx:id="Felhaszn_Lista_TableView" layoutX="150.0" layoutY="51.0" prefHeight="286.0" prefWidth="700.0" stylesheets="@../styles/KatalogusTabCSS.css">
                                 <columns>
-                                  <TableColumn prefWidth="210.0" text="Név" />
-                                  <TableColumn prefWidth="198.0" text="Email" />
-                                    <TableColumn prefWidth="172.0" text="Regisztráció dátuma" />
-                                    <TableColumn prefWidth="119.0" text="Kölcsönzések száma" />
+                                  <TableColumn fx:id="nev" prefWidth="210.0" text="Név" />
+                                  <TableColumn fx:id="mail" prefWidth="198.0" text="Email" />
+                                    <TableColumn fx:id="regDate" prefWidth="172.0" text="Regisztráció dátuma" />
+                                    <TableColumn fx:id="kolcsSz" prefWidth="119.0" text="Kölcsönzések száma" />
                                 </columns>
                               </TableView>
-                              <Label layoutX="14.0" layoutY="6.0" text="Regisztrált felhasználók" textFill="#00fff1">
+                              <Label layoutX="348.0" layoutY="14.0" prefHeight="35.0" prefWidth="316.0" text="Regisztrált felhasználók" textFill="#0022ff">
                                  <font>
-                                    <Font name="System Bold Italic" size="18.0" />
+                                    <Font name="System Bold Italic" size="24.0" />
                                  </font>
                               </Label>
                            </children></AnchorPane>
