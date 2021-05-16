@@ -24,6 +24,15 @@ public class Regisztralt_Ember implements Serializable{
     private int Role;
     private int id;
     private String Date;
+    private int BookedNumbers;
+
+    public void setBookedNumbers(int BookedNumbers) {
+        this.BookedNumbers = BookedNumbers;
+    }
+
+    public int getBookedNumbers() {
+        return BookedNumbers;
+    }
 
     @Basic                                                  // @Basic -> Adatbázisban az oszlopok létrehozása az adott változóhoz
     public String getName() {
