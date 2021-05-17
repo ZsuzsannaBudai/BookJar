@@ -16,6 +16,7 @@ public class Books {
     String title;
     String isbn;
     Integer bookID;
+    Boolean lending;
 
     public Books() {
     }
@@ -25,8 +26,25 @@ public class Books {
         this.title = title;
         this.isbn = isbn;
         this.bookID = bookID;
+        this.lending = false;
+    }
+    
+    public Books(String author, String title, String isbn, Integer bookID, Boolean lending) {
+        this.author = author;
+        this.title = title;
+        this.isbn = isbn;
+        this.bookID = bookID;
+        this.lending = lending;
     }
 
+    public void setLending(Boolean lending) {
+        this.lending = lending;
+    }
+
+    public Boolean getLending() {
+        return lending;
+    }    
+    
     public String getAuthor() {
         return author;
     }

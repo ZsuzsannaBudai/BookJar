@@ -16,7 +16,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../styles/belsoAblakCSS.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookJar_Belso_Ablak_DolgozoiController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../styles/belsoAblakCSS.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookJar_Belso_Ablak_DolgozoiController">
    <children>
       <GridPane id="AnchorPane1" alignment="CENTER" prefHeight="500" prefWidth="1000" stylesheets="@../styles/belsoAblakCSS.css">
         <columnConstraints>
@@ -67,7 +67,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Button>
-                              <TableView fx:id="TableView" editable="true" fixedCellSize="0.0" layoutX="438.0" layoutY="12.0" prefHeight="265.0" prefWidth="512.0" styleClass="tbl" stylesheets="@../styles/KatalogusTabCSS.css">
+                              <TableView fx:id="TableView" editable="true" fixedCellSize="0.0" layoutX="438.0" layoutY="12.0" onMouseClicked="#Select_An_Item" prefHeight="265.0" prefWidth="512.0" styleClass="tbl" stylesheets="@../styles/KatalogusTabCSS.css">
                                 <columns>
                                   <TableColumn fx:id="author" prefWidth="126.0" text="Szerző" />
                                   <TableColumn fx:id="title" prefWidth="274.0" text="Cím" />
@@ -83,7 +83,7 @@
                                  <font>
                                     <Font size="18.0" />
                                  </font></Button>
-                              <Label fx:id="successfullBooking" layoutX="138.0" layoutY="192.0" text="Sikeres kölcsönzés!" textFill="#f70000">
+                              <Label fx:id="successfullBooking" layoutX="138.0" layoutY="192.0" text="Sikeres kölcsönzés!" textFill="#07f500">
                                  <font>
                                     <Font name="System Bold Italic" size="20.0" />
                                  </font>
@@ -95,19 +95,25 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="TableView_Kolcsonzott" layoutX="150.0" layoutY="50.0" prefHeight="288.0" prefWidth="700.0" stylesheets="@../styles/KatalogusTabCSS.css">
+                              <TableView fx:id="TableView_Kolcsonzott" layoutX="12.0" layoutY="50.0" prefHeight="288.0" prefWidth="860.0" stylesheets="@../styles/KatalogusTabCSS.css">
                                 <columns>
-                                  <TableColumn fx:id="author_lend" prefWidth="167.0" text="Író" />
-                                  <TableColumn fx:id="title_lend" prefWidth="193.0" text="Cím" />
-                                    <TableColumn fx:id="lend_date" prefWidth="190.0" text="Kölcsönzés dátuma" />
-                                    <TableColumn fx:id="lend_date_end" prefWidth="149.0" text="Lejárat dátuma" />
+                                  <TableColumn fx:id="author_lend" prefWidth="155.0" text="Író" />
+                                  <TableColumn fx:id="title_lend" prefWidth="169.0" text="Cím" />
+                                    <TableColumn fx:id="isbn_lend" prefWidth="124.0" text="ISBN" />
+                                    <TableColumn fx:id="lend_date" minWidth="0.0" prefWidth="113.0" text="Kölcsönzés dátuma" />
+                                    <TableColumn fx:id="lend_date_end" minWidth="0.0" prefWidth="115.0" text="Lejárat dátuma" />
+                                    <TableColumn fx:id="lend_email" prefWidth="183.0" text="Kölcsönző (Felhasználó E-mail)" />
                                 </columns>
                               </TableView>
-                              <Label layoutX="374.0" layoutY="14.0" prefHeight="35.0" prefWidth="251.0" text="Kölcsönzött könyveid" textFill="#0022ff">
+                              <Label layoutX="374.0" layoutY="14.0" prefHeight="35.0" prefWidth="251.0" text="Kölcsönzött könyvek" textFill="#0022ff">
                                  <font>
                                     <Font name="System Bold Italic" size="24.0" />
                                  </font>
                               </Label>
+                              <Button layoutX="890.0" layoutY="142.0" mnemonicParsing="false" onAction="#Extension" prefHeight="34.0" prefWidth="97.0" text="Hosszabbítás" />
+                              <Button layoutX="890.0" layoutY="307.0" mnemonicParsing="false" onAction="#Lending_Delete" prefHeight="31.0" prefWidth="96.0" text="Visszahozva" />
+                              <TextField fx:id="Hosszabbitas_TextField" layoutX="890.0" layoutY="111.0" prefHeight="25.0" prefWidth="97.0" />
+                              <Label fx:id="Hosszabbitas_Label" alignment="CENTER" layoutX="889.0" layoutY="75.0" prefHeight="36.0" prefWidth="98.0" text="Hiba!" textFill="RED" />
                            </children></AnchorPane>
                   </content>
                 </Tab>

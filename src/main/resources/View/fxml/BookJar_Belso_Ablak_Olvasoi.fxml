@@ -16,7 +16,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../styles/belsoAblakCSS.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookJar_Belso_Ablak_OlvasoiController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../styles/belsoAblakCSS.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookJar_Belso_Ablak_OlvasoiController">
    <children>
       <GridPane id="AnchorPane1" alignment="CENTER" prefHeight="500" prefWidth="1000" stylesheets="@../styles/belsoAblakCSS.css">
         <columnConstraints>
@@ -67,7 +67,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Button>
-                              <TableView fx:id="TableView" editable="true" fixedCellSize="0.0" layoutX="438.0" layoutY="12.0" prefHeight="265.0" prefWidth="512.0" styleClass="tbl" stylesheets="@../styles/KatalogusTabCSS.css">
+                              <TableView fx:id="TableView" editable="true" fixedCellSize="0.0" layoutX="438.0" layoutY="12.0" onMouseClicked="#Select_An_Item" prefHeight="265.0" prefWidth="512.0" styleClass="tbl" stylesheets="@../styles/KatalogusTabCSS.css">
                                 <columns>
                                   <TableColumn fx:id="author" prefWidth="126.0" text="Szerző" />
                                   <TableColumn fx:id="title" prefWidth="274.0" text="Cím" />
@@ -83,7 +83,7 @@
                                  <font>
                                     <Font size="18.0" />
                                  </font></Button>
-                              <Label fx:id="successfullBooking" layoutX="138.0" layoutY="192.0" text="Sikeres kölcsönzés!" textFill="#f70000">
+                              <Label fx:id="successfullBooking" layoutX="138.0" layoutY="192.0" text="Sikeres kölcsönzés!" textFill="#0cf500">
                                  <font>
                                     <Font name="System Bold Italic" size="20.0" />
                                  </font>

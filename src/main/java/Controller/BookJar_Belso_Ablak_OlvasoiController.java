@@ -25,6 +25,7 @@ import javafx.concurrent.Task;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
@@ -73,10 +74,9 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
 
     @FXML
     private TableColumn<Lending, String> lend_date_end;
-    
+
     @FXML
     private TableView<Regisztralt_Ember> Felhaszn_Lista_TableView;
-
 
     @FXML
     private Button Landing_Button;
@@ -86,7 +86,7 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
 
     @FXML
     private TabPane TabPanel;
-    
+
     @FXML
     private TableColumn<Regisztralt_Ember, String> nev;
 
@@ -98,14 +98,13 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
 
     @FXML
     private TableColumn<Regisztralt_Ember, String> kolcsSz;
+
+    boolean setVis = false;
     
     boolean errorInLending = false;
-    
-    boolean setVis = true;
-    
+
     @FXML
     private Label successfullBooking;
-
 
     @FXML
     void Pressed_a_new_Tab(MouseEvent event) throws SQLException {
@@ -119,7 +118,7 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
             lend_date_end.setCellValueFactory(new PropertyValueFactory<Lending, String>("lend_date_end"));
 
             TableView_Kolcsonzott.setItems(data);
-        }else if(TabPanel.getSelectionModel().getSelectedItem().getText().equals("Felhasználó lista")){
+        } else if (TabPanel.getSelectionModel().getSelectedItem().getText().equals("Felhasználó lista")) {
             ObservableList<Regisztralt_Ember> data = sqlQuery();
 
             nev.setCellValueFactory(new PropertyValueFactory<Regisztralt_Ember, String>("Name"));
@@ -135,6 +134,8 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
     void Landing_a_Book(ActionEvent event) throws SQLException {
 
         this.dbCon = MysqlCon.getInstance();
+
+        errorInLending = false;
 
         Model model = new Model();
         int userID = model.passLoginUserID;
@@ -156,10 +157,12 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
             data.add(lending);
         }
 
-        
-        for (Lending l : data) {
-            if (l.getAuthor_lending().equals(book.getAuthor()) && l.getTitle_lending().equals(book.getTitle())) {
-                errorInLending = true;
+        if (book != null) {
+            for (Lending l : data) {
+                if (l.getAuthor_lending().equals(book.getAuthor()) && l.getTitle_lending().equals(book.getTitle())) {
+                    errorInLending = true;
+                    break;
+                }
             }
         }
 
@@ -192,12 +195,10 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
             LocalDate localdate2 = LocalDate.now().plusDays(7);
             DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             String formattedDate2 = localdate2.format(formatter2);
-            
-            String sevenDays = "7";
 
-           successfullBooking.setVisible(true);
-           
-           Task<Void> sleeper = new Task<Void>() {
+            successfullBooking.setVisible(true);
+
+            Task<Void> sleeper = new Task<Void>() {
                 @Override
                 protected Void call() throws Exception {
                     try {
@@ -212,20 +213,39 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
             sleeper.setOnSucceeded(b -> {
                 successfullBooking.setVisible(false);
             });
-            
+
             stmt.executeUpdate("INSERT INTO lending(bookID, UserID, lend_date, lend_date_end) VALUE ('"
                     + book.getBookID() + "','" + Model.passLoginUserID + "','" + formattedDate + "','" + formattedDate2 + "');");
             stmt2.executeUpdate("UPDATE users SET BookedNumbers = BookedNumbers + 1 WHERE users.UserID = " + "'" + Model.passLoginUserID + "';");
         }
+        Refresh();
     }
 
     @FXML
-    void SearchButton_Pressed(ActionEvent event) throws SQLException {
-        
+    void Select_An_Item(MouseEvent event) {
+        TableView.setRowFactory(tv -> new TableRow<Books>() {            
+            @Override
+            protected void updateItem(Books item, boolean empty){
+                super.updateItem(item, empty);
+                if(item == null || item.getBookID() == null)
+                    setStyle("");
+                else if(item.equals(TableView.getSelectionModel().getSelectedItem()))
+                    setStyle("-fx-background-color: #FFD700;");
+                else if(!item.getLending())
+                    setStyle("-fx-background-color: #00FF00;");
+                else if(item.getLending())
+                    setStyle("-fx-background-color: #FF0000;");
+                else
+                    setStyle("");
+            }
+        });
+    }
+
+    public void Refresh() throws SQLException{
         ObservableList<Books> data
                 = searchQuery(Writer_TextField.getText(), Title_TextField.getText(), ISBN_TextField.getText());
 
-        if(errorInLending == false && setVis == false){
+        if(setVis){
             TableView.setVisible(true); 
             Landing_Button.setVisible(true);
         }
@@ -236,6 +256,28 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
         bookID.setCellValueFactory(new PropertyValueFactory<Books, Integer>("BookID"));
 
         TableView.setItems(data);
+        
+        TableView.setRowFactory(tv -> new TableRow<Books>() {            
+            @Override
+            protected void updateItem(Books item, boolean empty){
+                super.updateItem(item, empty);
+                if(item == null || item.getBookID() == null)
+                    setStyle("");
+                else if(item.equals(TableView.getSelectionModel().getSelectedItem()))
+                    setStyle("-fx-background-color: #FFD700;");
+                else if(!item.getLending())
+                    setStyle("-fx-background-color: #00FF00;");
+                else if(item.getLending())
+                    setStyle("-fx-background-color: #FF0000;");
+                else
+                    setStyle("");
+            }
+        });
+    }
+    
+    @FXML
+    void SearchButton_Pressed(ActionEvent event) throws SQLException {
+        Refresh();
     }
 
     @FXML
@@ -259,13 +301,12 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
     }
 
     public ObservableList<Books> searchQuery(String author, String title, String isbn) throws SQLException {
-        setVis = false;
+        setVis = true;
         this.dbCon = MysqlCon.getInstance();
 
         ResultSet rs = null;
         ObservableList<Books> data = FXCollections.observableArrayList();
 
-        //Books book = TableView.getSelectionModel().getSelectedItem();
         int usedTextFields = 0;
 
         usedTextFields += (!author.equals("") ? 1 : 0);
@@ -307,8 +348,7 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
                         + "'" + "%" + isbn + "%" + "';");
                 break;
             default:
-                ErrorMessage_Label.setVisible(true);
-                //rs = dbCon.executeQuery("SELECT * FROM books;");
+                rs = dbCon.executeQuery("SELECT * FROM books;");
                 break;
         }
 
@@ -318,6 +358,13 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
             book.setTitle(rs.getString("Title"));
             book.setIsbn(rs.getString("ISBN"));
             book.setBookID(rs.getInt("bookID"));
+
+            ResultSet rs2 = dbCon.executeQuery("SELECT * FROM lending WHERE bookID = " + "'" + book.getBookID() + "';");
+            if (rs2.next()) {
+                book.setLending(true);
+            } else {
+                book.setLending(false);
+            }
 
             data.add(book);
         }
@@ -345,7 +392,7 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
 
         return data;
     }
-    
+
     public ObservableList<Regisztralt_Ember> sqlQuery() throws SQLException {
         this.dbCon = MysqlCon.getInstance();
         Model model = new Model();
