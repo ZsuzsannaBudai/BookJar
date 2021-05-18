@@ -16,7 +16,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../styles/belsoAblakCSS.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookJar_Belso_Ablak_OlvasoiController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../styles/belsoAblakCSS.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookJar_Belso_Ablak_OlvasoiController">
    <children>
       <GridPane id="AnchorPane1" alignment="CENTER" prefHeight="500" prefWidth="1000" stylesheets="@../styles/belsoAblakCSS.css">
         <columnConstraints>
@@ -135,14 +135,14 @@
                   <content>
                     <AnchorPane id="AnchorPane2" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css">
                            <children>
-                              <Label layoutX="14.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css" text="Elakadtál az alkalmazás használata közben?&#10;&#10;Itt egy kis segítség:&#10;&#10;Katalógus fül alatt:&#10;- tudsz író, cím, isbn szerint keresni&#10;- a keresést a gomb segítségével tudod elindítani&#10;- ha a könyvtárunkban megvan a keresett könyv, &#10;   jobb oldalt egy táblázatban látod&#10;- a táblázatban le tudod foglalni az adott könyvet&#10;&#10;Kérelmeim fül alatt:&#10;- meg tudod tekinteni a foglalt könyveidet, és a státuszukat&#10;" textFill="#fff800">
+                              <Label layoutX="14.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css" text="Elakadtál az alkalmazás használata közben?&#10;&#10;Itt egy kis segítség:&#10;&#10;Katalógus fül alatt:&#10;- tudsz író, cím, isbn szerint keresni&#10;- a keresést a gomb segítségével tudod elindítani&#10;- ha a könyvtárunkban megvan a keresett könyv, &#10;   jobb oldalt egy táblázatban látod&#10;- a táblázatban le tudod foglalni az adott könyvet&#10;&#10;Kérelmeim fül alatt:&#10;- meg tudod tekinteni a foglalt könyveidet, és a státuszukat" textFill="#fff800">
                                  <font>
                                     <Font name="System Bold Italic" size="18.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="566.0" layoutY="27.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css" text="Felhasználó lista fül alatt:&#10;- meg tudod tekinteni az összes eddigi regisztrált &#10;felhasználót a könyvtárban&#10;&#10;Hasznos infók fül alatt:&#10;- itt jársz most :)&#10;&#10;Kapcsolat fül alatt:&#10;- elérhetőségeket találsz&#10;&#10;Reméljük tudtunk segíteni! :)" textFill="#fff800">
+                              <Label layoutX="534.0" layoutY="11.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css" text="Felhasználó lista fül alatt:&#10;- meg tudod tekinteni az összes eddigi regisztrált &#10;felhasználót a könyvtárban&#10;&#10;Hasznos infók fül alatt:&#10;- itt jársz most :)&#10;&#10;Kapcsolat fül alatt:&#10;- elérhetőségeket találsz&#10;&#10;Reméljük tudtunk segíteni! :)" textFill="#fff800">
                                  <font>
-                                    <Font name="System Bold Italic" size="18.0" />
+                                    <Font name="System Bold Italic" size="20.0" />
                                  </font>
                               </Label>
                            </children></AnchorPane>
@@ -152,7 +152,7 @@
                   <content>
                     <AnchorPane id="AnchorPane2" maxHeight="352.0" maxWidth="1000.0" minHeight="352.0" minWidth="1000.0" prefHeight="352.0" prefWidth="1000.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css">
                            <children>
-                              <Label id="label" layoutX="35.0" layoutY="-14.0" prefHeight="351.0" prefWidth="775.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css" text="     &#9;&#9;&#9;                       Kérdésed van?&#10;&#10;Keress minket az alábbi elérhetőségek bármelyikén:&#10;&#10;E-mail:&#10;budaizsuzsannaemese@bookjar.com&#10;geregabor@bookjar.com&#10;vargakristof@bookjar.com&#10;dankalajos@bookjar.com" textFill="#fff800">
+                              <Label id="label" layoutX="35.0" layoutY="-14.0" prefHeight="351.0" prefWidth="775.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css" text="     &#9;&#9;&#9;            Kérdésed van? Hosszabbítani szeretnél?&#10;&#10;Keress minket az alábbi elérhetőségek bármelyikén:&#10;&#10;E-mail:&#10;budaizsuzsannaemese@bookjar.com&#10;geregabor@bookjar.com&#10;vargakristof@bookjar.com&#10;dankalajos@bookjar.com" textFill="#fff800">
                                  <font>
                                     <Font name="System Bold Italic" size="24.0" />
                                  </font>
