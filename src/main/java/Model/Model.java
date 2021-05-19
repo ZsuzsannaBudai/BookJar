@@ -8,8 +8,6 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
-import Controller.*;
 
 public class Model {
     
@@ -56,6 +54,7 @@ public class Model {
             re.setRole(rs.getInt("RoleType"));
 
             passLoginUserName = re.getName();
+            passLoginUserID = re.getId();
                 
             return re;
             }
@@ -63,7 +62,6 @@ public class Model {
     }
     
     public int register(String name, String email, String password) throws ClassNotFoundException, SQLException {
-        Statement stmt = dbCon.mysqlconnection.createStatement();
         int rolevalue = 1;
         
         LocalDate localdate = LocalDate.now();
@@ -76,8 +74,8 @@ public class Model {
         if(rs.next()) 
             return 1;
         else
-            stmt.executeUpdate("INSERT INTO users(Name, Email, Password, RoleType, Date) VALUE ('"
-                    +name+"','"+email+"','"+password+"','"+rolevalue+"','"+formattedDate+"');");
+            dbCon.executeUpdate("INSERT INTO users(Name, Email, Password, RoleType, Date, BookedNumbers) VALUE ('"
+                    +name+"','"+email+"','"+password+"','"+rolevalue+"','"+formattedDate+"',"+ 0 +");");
         
         return 0;
     }
