@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/*
+
 package Controller;
 
 
@@ -35,12 +35,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-*/
-/**
- *
- * @author Gabi
- */
-/*public class Regisztracio_AblakControllerTest {
+
+public class Regisztracio_AblakControllerTest {
 
     MysqlCon dbCon;
 
@@ -70,7 +66,7 @@ import static org.junit.Assert.*;
 
         Model model = new Model();
 
-        int return_value = model.register("krisi", "krisi@krisi.com", "krisi");
+        int return_value = model.register("Gabi", "geregabor@bookjar.com", "admin123");
 
         if (return_value == 1) {
             actual = true;
@@ -132,7 +128,7 @@ import static org.junit.Assert.*;
 
         Model model = new Model();
 
-        if ((model.login_user("tesztfelhasznalo@gmail.com", "tesztteszt123", 1)) != null) {
+        if ((model.login_user("geregabor@bookjar.com", "admin123", 0)) != null) {
             actual = true;
         }
 
@@ -200,44 +196,46 @@ import static org.junit.Assert.*;
     public void testBooks() {
         Books books = new Books();
 
+        boolean assertBoolean = true;
+        
         books.setAuthor("George R. R. Martin");
         books.setTitle("A Game of Thrones (Trónok harca)");
         books.setBookID(1);
         books.setIsbn("0-553-10354-7");
 
-        if ("George R. R. Martin".equals(books.getAuthor())) {
-            System.out.println("Igaz");
+        if (!"George R. R. Martin".equals(books.getAuthor())) {
+            assertBoolean = false;
         }
 
-        if ("A Game of Thrones (Trónok harca)".equals(books.getTitle())) {
-            System.out.println("Igaz2");
+        if (!"A Game of Thrones (Trónok harca)".equals(books.getTitle())) {
+            assertBoolean = false;
         }
 
-        if (1 == books.getBookID()) {
-            System.out.println("Igaz3");
+        if (!(1 == books.getBookID())) {
+            assertBoolean = false;
         }
 
-        if ("0-553-10354-7".equals(books.getIsbn())) {
-            System.out.println("Igaz4");
+        if (!"0-553-10354-7".equals(books.getIsbn())) {
+            assertBoolean = false;
         }
 
         Books books_argumentumokkal = new Books("Leigh Bardugo", "Shadow and Bone (Árnyék és csont)",
                 "978-0-8050-9459-6", 20);
 
-        if ("Leigh Bardugo".equals(books_argumentumokkal.getAuthor())) {
-            System.out.println("Igaz");
+        if (!"Leigh Bardugo".equals(books_argumentumokkal.getAuthor())) {
+            assertBoolean = false;
         }
 
-        if ("Shadow and Bone (Árnyék és csont)".equals(books_argumentumokkal.getTitle())) {
-            System.out.println("Igaz2");
+        if (!"Shadow and Bone (Árnyék és csont)".equals(books_argumentumokkal.getTitle())) {
+            assertBoolean = false;
         }
 
-        if (20 == books_argumentumokkal.getBookID()) {
-            System.out.println("Igaz3");
+        if (!(20 == books_argumentumokkal.getBookID())) {
+            assertBoolean = false;
         }
 
-        if ("978-0-8050-9459-6".equals(books_argumentumokkal.getIsbn())) {
-            System.out.println("Igaz4");
+        if (!"978-0-8050-9459-6".equals(books_argumentumokkal.getIsbn())) {
+            assertBoolean = false;
         }
 
         assertEquals(true, true);
@@ -455,4 +453,3 @@ import static org.junit.Assert.*;
     }
 
 }
-*/

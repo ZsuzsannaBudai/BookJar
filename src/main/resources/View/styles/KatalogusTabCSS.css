@@ -10,6 +10,3 @@
     -fx-background-color: -fx-table-cell-border-color, #e6ffff;
 }
 
-.table-row-cell:selected {
-    -fx-background-color: #ffcc99;
-}

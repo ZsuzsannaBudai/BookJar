@@ -38,7 +38,7 @@
                      </color>
                   </Shadow>
                </effect></Label>
-            <TabPane fx:id="TabPanel" maxWidth="1000.0" minWidth="1000.0" onMouseClicked="#Pressed_a_new_Tab" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMinWidth="160.0" GridPane.rowIndex="1">
+            <TabPane fx:id="TabPanel" maxWidth="1000.0" minWidth="1000.0" onMouseClicked="#Pressed_a_new_Tab" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMinWidth="150.0" GridPane.rowIndex="1">
               <tabs>
                 <Tab text="Katalógus">
                   <content>
@@ -67,7 +67,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Button>
-                              <TableView fx:id="TableView" editable="true" fixedCellSize="0.0" layoutX="438.0" layoutY="12.0" prefHeight="265.0" prefWidth="512.0" styleClass="tbl" stylesheets="@../styles/KatalogusTabCSS.css">
+                              <TableView fx:id="TableView" editable="true" fixedCellSize="0.0" layoutX="438.0" layoutY="12.0" onMouseClicked="#Select_An_Item" prefHeight="265.0" prefWidth="512.0" styleClass="tbl" stylesheets="@../styles/KatalogusTabCSS.css">
                                 <columns>
                                   <TableColumn fx:id="author" prefWidth="126.0" text="Szerző" />
                                   <TableColumn fx:id="title" prefWidth="274.0" text="Cím" />
@@ -83,7 +83,7 @@
                                  <font>
                                     <Font size="18.0" />
                                  </font></Button>
-                              <Label fx:id="successfullBooking" layoutX="138.0" layoutY="192.0" text="Sikeres kölcsönzés!" textFill="#f70000">
+                              <Label fx:id="successfullBooking" layoutX="138.0" layoutY="192.0" text="Sikeres kölcsönzés!" textFill="#07f500">
                                  <font>
                                     <Font name="System Bold Italic" size="20.0" />
                                  </font>
@@ -95,19 +95,34 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="TableView_Kolcsonzott" layoutX="150.0" layoutY="50.0" prefHeight="288.0" prefWidth="700.0" stylesheets="@../styles/KatalogusTabCSS.css">
+                              <TableView fx:id="TableView_Kolcsonzott" layoutX="12.0" layoutY="50.0" prefHeight="292.0" prefWidth="830.0" stylesheets="@../styles/KatalogusTabCSS.css">
                                 <columns>
-                                  <TableColumn fx:id="author_lend" prefWidth="167.0" text="Író" />
-                                  <TableColumn fx:id="title_lend" prefWidth="193.0" text="Cím" />
-                                    <TableColumn fx:id="lend_date" prefWidth="190.0" text="Kölcsönzés dátuma" />
-                                    <TableColumn fx:id="lend_date_end" prefWidth="149.0" text="Lejárat dátuma" />
+                                  <TableColumn fx:id="author_lend" prefWidth="124.79998111724854" text="Író" />
+                                  <TableColumn fx:id="title_lend" prefWidth="148.79995727539062" text="Cím" />
+                                    <TableColumn fx:id="isbn_lend" prefWidth="118.40008544921875" text="ISBN" />
+                                    <TableColumn fx:id="lend_date" minWidth="0.0" prefWidth="132.800048828125" text="Kölcsönzés dátuma" />
+                                    <TableColumn fx:id="lend_date_end" minWidth="0.0" prefWidth="96.79998779296875" text="Lejárat dátuma" />
+                                    <TableColumn fx:id="lend_email" prefWidth="244.0" text="Kölcsönző (Felhasználó)" />
                                 </columns>
                               </TableView>
-                              <Label layoutX="374.0" layoutY="14.0" prefHeight="35.0" prefWidth="251.0" text="Kölcsönzött könyveid" textFill="#0022ff">
+                              <Label layoutX="374.0" layoutY="14.0" prefHeight="35.0" prefWidth="251.0" text="Kölcsönzött könyvek" textFill="#0022ff">
                                  <font>
                                     <Font name="System Bold Italic" size="24.0" />
                                  </font>
                               </Label>
+                              <Button layoutX="853.0" layoutY="151.0" mnemonicParsing="false" onAction="#Extension" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: orange;" text="Hosszabbítás">
+                                 <font>
+                                    <Font name="System Bold Italic" size="15.0" />
+                                 </font></Button>
+                              <Button layoutX="851.0" layoutY="240.0" mnemonicParsing="false" onAction="#Lending_Delete" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: orange;" text="Visszahozva">
+                                 <font>
+                                    <Font name="System Bold Italic" size="15.0" />
+                                 </font></Button>
+                              <TextField fx:id="Hosszabbitas_TextField" layoutX="869.0" layoutY="102.0" prefHeight="25.0" prefWidth="100.0" />
+                              <Label fx:id="Hosszabbitas_Label" alignment="CENTER" layoutX="868.0" layoutY="25.0" prefHeight="36.0" prefWidth="98.0" text="Hiba!" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold Italic" size="20.0" />
+                                 </font></Label>
                            </children></AnchorPane>
                   </content>
                 </Tab>
@@ -135,14 +150,14 @@
                   <content>
                     <AnchorPane id="AnchorPane2" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css">
                            <children>
-                              <Label layoutX="14.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css" text="Elakadtál az alkalmazás használata közben?&#10;&#10;Itt egy kis segítség:&#10;&#10;Katalógus fül alatt:&#10;- tudsz író, cím, isbn szerint keresni&#10;- a keresést a gomb segítségével tudod elindítani&#10;- ha a könyvtárunkban megvan a keresett könyv, &#10;   jobb oldalt egy táblázatban látod&#10;- a táblázatban le tudod foglalni az adott könyvet&#10;&#10;Kérelmeim fül alatt:&#10;- meg tudod tekinteni a foglalt könyveidet, és a státuszukat&#10;" textFill="#fff800">
+                              <Label layoutX="31.0" layoutY="25.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css" text="Elakadtál az alkalmazás fejlesztése közben?&#10;&#10;Itt egy kis segítség:&#10;&#10;A repót a következő URL-en találod:  &#10;https://github.com/ZsuzsannaBudai/BookJar.git&#10;&#10;A Trello link a következő: &#10;https://trello.com/b/pai2YM8D/bookjar#" textFill="#fff800">
                                  <font>
-                                    <Font name="System Bold Italic" size="18.0" />
+                                    <Font name="System Bold Italic" size="20.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="566.0" layoutY="27.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css" text="Felhasználó lista fül alatt:&#10;- meg tudod tekinteni az összes eddigi regisztrált &#10;felhasználót a könyvtárban&#10;&#10;Hasznos infók fül alatt:&#10;- itt jársz most :)&#10;&#10;Kapcsolat fül alatt:&#10;- elérhetőségeket találsz&#10;&#10;Reméljük tudtunk segíteni! :)" textFill="#fff800">
+                              <Label layoutX="559.0" layoutY="56.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css" text="Az adatbázist a következő linken találod:&#10;https://hosting2128384.online.pro/sql/&#10;&#10;Felhasználó:&#10;00504526_bookjardatabase&#10;&#10;Jelszó:&#10;_9CHmpXxNgqMs8W" textFill="#fff800">
                                  <font>
-                                    <Font name="System Bold Italic" size="18.0" />
+                                    <Font name="System Bold Italic" size="20.0" />
                                  </font>
                               </Label>
                            </children></AnchorPane>
@@ -152,12 +167,12 @@
                   <content>
                     <AnchorPane id="AnchorPane2" maxHeight="352.0" maxWidth="1000.0" minHeight="352.0" minWidth="1000.0" prefHeight="352.0" prefWidth="1000.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css">
                            <children>
-                              <Label id="label" layoutX="35.0" layoutY="-14.0" prefHeight="351.0" prefWidth="775.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css" text="     &#9;&#9;&#9;                       Kérdésed van?&#10;&#10;Keress minket az alábbi elérhetőségek bármelyikén:&#10;&#10;E-mail:&#10;budaizsuzsannaemese@bookjar.com&#10;geregabor@bookjar.com&#10;vargakristof@bookjar.com&#10;dankalajos@bookjar.com" textFill="#fff800">
+                              <Label id="label" layoutX="37.0" layoutY="-40.0" prefHeight="387.0" prefWidth="775.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css" text="E-mail címeink:&#10;budaizsuzsannaemese@bookjar.com&#10;geregabor@bookjar.com&#10;vargakristof@bookjar.com&#10;dankalajos@bookjar.com&#10;&#10;Teams meetingek linkje:&#10;https://teams.microsoft.com/l/team/&#10;19%3a9f1d60f6adff4714abac1f6162e&#10;fa8b9%40thread.tacv2/conversations?&#10;groupId=1e8c6a9f-0ddf-48d0-9655&#10;" textFill="#fff800">
                                  <font>
                                     <Font name="System Bold Italic" size="24.0" />
                                  </font>
                               </Label>
-                              <Label id="label" layoutX="589.0" layoutY="136.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css" text="Telefon: &#10;06-30/123-4567&#10;&#10;Címünk:&#10;5000 Könyvtár, Könyv utca 12." textFill="#fff800">
+                              <Label id="label" layoutX="474.0" layoutY="48.0" stylesheets="@../styles/KapcsolatTabbackGroundCSS.css" text="Telefonszámunk: &#10;06-30/123-4567&#10;&#10;Ha esetleg nem találnál be a munkahelyedre:&#10;5000 Könyvtár, Könyv utca 12." textFill="#fff800">
                                  <font>
                                     <Font name="System Bold Italic" size="24.0" />
                                  </font>

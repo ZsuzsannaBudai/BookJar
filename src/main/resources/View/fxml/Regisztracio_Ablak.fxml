@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../styles/bejelentkezoRegisztraciosAblakCSS.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Regisztracio_AblakController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../styles/bejelentkezoRegisztraciosAblakCSS.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Regisztracio_AblakController">
    <children>
       <GridPane layoutY="-1.0" prefHeight="500.0" prefWidth="1000.0">
         <columnConstraints>
@@ -43,7 +43,7 @@
                      <GridPane.margin>
                         <Insets bottom="100.0" left="100.0" top="50.0" />
                      </GridPane.margin></Label>
-                  <TextField fx:id="Email_TextField" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" GridPane.rowIndex="1">
+                  <TextField fx:id="Name_TextField" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets bottom="150.0" left="100.0" right="30.0" />
                      </GridPane.margin>
@@ -55,7 +55,7 @@
                      <font>
                         <Font name="Calibri Bold" size="24.0" />
                      </font></Label>
-                  <TextField fx:id="Name_TextField" maxWidth="300.0" minHeight="-Infinity" minWidth="300.0" prefWidth="300.0" GridPane.rowIndex="1">
+                  <TextField fx:id="Email_TextField" maxWidth="300.0" minHeight="-Infinity" minWidth="300.0" prefWidth="300.0" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets bottom="100.0" left="100.0" top="55.0" />
                      </GridPane.margin>
@@ -110,7 +110,7 @@
                <GridPane.margin>
                   <Insets top="30.0" />
                </GridPane.margin></Label>
-            <Label fx:id="ErrorMessage_Label" text="Ezzel az e-mail címmel már létezik felhasználó!" textFill="RED" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+            <Label fx:id="ErrorMessage_Label" text="Foglalt/Hibás regisztrációs adatok!" textFill="RED" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="30.0" left="100.0" />
                </GridPane.margin>
