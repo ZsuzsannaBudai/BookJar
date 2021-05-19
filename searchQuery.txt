@@ -3,7 +3,7 @@ George R. R. Martin,A Clash of Kings (Királyok csatája),0-00-224585-X,2
 George R. R. Martin,A Storm of Swords (Kardok vihara),0-553-10663-5,3
 George R. R. Martin,A Feast for Crows (Varjak lakomája),0-00-224743-7,4
 George R. R. Martin,A Dance with Dragons (Sárkányok tánca),978-0553801477,5
-J. K. Rowling,Philosopher's Stone (Bölcsek köve),0-7475-3269-9,6
+J. K. Rowling,Philosophers Stone (Bölcsek köve),0-7475-3269-9,6
 J. K. Rowling,Chamber of Secrets (Titkok kamrája),0-7475-3849-2,7
 J. K. Rowling,Prisoner of Azkaban (Az azkabani fogoly),0-7475-4215-5,8
 J. K. Rowling,Goblet of Fire (Tûz serlege),0-7475-4624-X,9

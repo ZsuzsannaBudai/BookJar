@@ -42,12 +42,30 @@ public class MysqlCon {
         return null;
     }
     
-    public void killThisShit(){
+    public void CloseConnection(){
         try{
             mysqlconnection.close();
-            System.out.println("Fucked up successfully");
+            System.out.println("Database connection close()");
         }catch(Exception e){
             e.printStackTrace();
+        }
+    }
+
+    public void executeUpdate(String insert) {
+        try {
+            Statement stmt = this.mysqlconnection.createStatement();
+            stmt.execute(insert);
+        } catch (SQLException e) {
+
+        }
+    }
+    
+    public void executeUpdate_Delete(String delete){
+        try {
+            Statement stmt = this.mysqlconnection.prepareStatement(delete);
+            stmt.execute(delete);
+        } catch (SQLException e) {
+
         }
     }
 }
