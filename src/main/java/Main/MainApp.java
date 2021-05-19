@@ -11,7 +11,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() throws Exception {
-       MysqlCon.getInstance().killThisShit();
+       MysqlCon.getInstance().CloseConnection();
        super.stop();
     }
 
