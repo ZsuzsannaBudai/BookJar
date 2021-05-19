@@ -63,7 +63,7 @@ public class Regisztracio_AblakController implements Initializable {
     @FXML
     void SendButtonPush(ActionEvent event) throws IOException, ClassNotFoundException, SQLException {
         Model model = new Model();
-
+        
         if(emailIsCorrect(Email_TextField.getText()) == 1 
                 && passwordsAreEquals(Password_TextField.getText(), PasswordAgain_TextField.getText()) == 1
                 && ((model.register(Name_TextField.getText(), Email_TextField.getText(), Password_TextField.getText())) == 0)){
