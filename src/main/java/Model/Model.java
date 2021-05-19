@@ -74,8 +74,8 @@ public class Model {
         if(rs.next()) 
             return 1;
         else
-            dbCon.executeUpdate("INSERT INTO users(Name, Email, Password, RoleType, Date) VALUE ('"
-                    +name+"','"+email+"','"+password+"','"+rolevalue+"','"+formattedDate+"');");
+            dbCon.executeUpdate("INSERT INTO users(Name, Email, Password, RoleType, Date, BookedNumbers) VALUE ('"
+                    +name+"','"+email+"','"+password+"','"+rolevalue+"','"+formattedDate+"',"+ 0 +");");
         
         return 0;
     }

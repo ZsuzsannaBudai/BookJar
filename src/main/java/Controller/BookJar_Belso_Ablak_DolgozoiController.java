@@ -274,6 +274,9 @@ public class BookJar_Belso_Ablak_DolgozoiController implements Initializable {
     @FXML
     void SearchButton_Pressed(ActionEvent event) throws SQLException {
         Refresh();
+        Title_TextField.setText("");
+ISBN_TextField.setText("");
+Writer_TextField.setText("");
     }
 
     public void Refresh() throws SQLException {
@@ -563,7 +566,7 @@ public class BookJar_Belso_Ablak_DolgozoiController implements Initializable {
                 Hosszabbitas_Label.setVisible(false);
             });
         }
-        
+        Hosszabbitas_TextField.setText("");
     }
 
 }

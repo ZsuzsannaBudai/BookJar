@@ -278,6 +278,9 @@ public class BookJar_Belso_Ablak_OlvasoiController implements Initializable {
     @FXML
     void SearchButton_Pressed(ActionEvent event) throws SQLException {
         Refresh();
+        Title_TextField.setText("");
+ISBN_TextField.setText("");
+Writer_TextField.setText("");
     }
 
     @FXML
